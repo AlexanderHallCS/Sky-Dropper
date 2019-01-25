@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  LevelsScene.swift
 //  Sky Dropper
 //
 //  Created by Alexander Hall on 1/9/19.
@@ -9,10 +9,10 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class StatisticsScene: SKScene {
     
     override func didMove(to view: SKView) {
-        //comment
+        
     }
     
     
