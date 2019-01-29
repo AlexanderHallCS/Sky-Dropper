@@ -17,13 +17,24 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StartingBG" translatesAutoresizingMaskIntoConstraints="NO" id="8db-tL-v5W">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9O9-a6-jFc">
+                                <rect key="frame" x="78" y="536" width="219" height="111"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <state key="normal" backgroundImage="ShopButton"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.2542640349139661" green="0.71565504605736041" blue="0.65104085403978851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="27"/>
+            <point key="canvasLocation" x="664.79999999999995" y="26.53673163418291"/>
         </scene>
         <!--Statistics View Controller-->
         <scene sceneID="3Jw-Og-mE8">
@@ -56,4 +67,8 @@
             <point key="canvasLocation" x="2038" y="27"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ShopButton" width="217" height="116"/>
+        <image name="StartingBG" width="1080" height="1920"/>
+    </resources>
 </document>

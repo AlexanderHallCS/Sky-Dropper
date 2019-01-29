@@ -15,12 +15,17 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //shopButton initialization
+        let shopButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+        let shopButtonImage = UIImage(named: "ShopButton")
+        shopButton.setImage(shopButtonImage, for: .normal)
+        shopButton.frame = CGRect(x: scene.size.height.get, y: 20, width: 60, height: 60)
+        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'StartScene.sks'
             if let scene = SKScene(fileNamed: "StartScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
                 // Present the scene
                 view.presentScene(scene)
             }
