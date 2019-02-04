@@ -16,6 +16,12 @@
 		11824C7A21E636E500BB4A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11824C7821E636E500BB4A2C /* LaunchScreen.storyboard */; };
 		11824C8521E636E500BB4A2C /* Sky_DropperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11824C8421E636E500BB4A2C /* Sky_DropperTests.swift */; };
 		11824C9021E636E500BB4A2C /* Sky_DropperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11824C8F21E636E500BB4A2C /* Sky_DropperUITests.swift */; };
+		1199D6462207D89D0042CD2D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199D6452207D89D0042CD2D /* ShopViewController.swift */; };
+		1199D6482207D8D00042CD2D /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199D6472207D8D00042CD2D /* ShopScene.swift */; };
+		1199D64A2207D8F90042CD2D /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1199D6492207D8F90042CD2D /* ShopScene.sks */; };
+		1199D64C2207DC160042CD2D /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199D64B2207DC160042CD2D /* PlayViewController.swift */; };
+		1199D64E2207DC460042CD2D /* PlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199D64D2207DC460042CD2D /* PlayScene.swift */; };
+		1199D6502207DC670042CD2D /* PlayScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1199D64F2207DC670042CD2D /* PlayScene.sks */; };
 		11CE17F221FB4C0E002A421F /* EndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CE17F121FB4C0E002A421F /* EndViewController.swift */; };
 		11CE17F421FB4C4D002A421F /* EndScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CE17F321FB4C4D002A421F /* EndScene.swift */; };
 		11CE17F621FB4C70002A421F /* EndScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11CE17F521FB4C70002A421F /* EndScene.sks */; };
@@ -57,6 +63,12 @@
 		11824C8B21E636E500BB4A2C /* Sky DropperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sky DropperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11824C8F21E636E500BB4A2C /* Sky_DropperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sky_DropperUITests.swift; sourceTree = "<group>"; };
 		11824C9121E636E500BB4A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1199D6452207D89D0042CD2D /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		1199D6472207D8D00042CD2D /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
+		1199D6492207D8F90042CD2D /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShopScene.sks; sourceTree = "<group>"; };
+		1199D64B2207DC160042CD2D /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		1199D64D2207DC460042CD2D /* PlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayScene.swift; sourceTree = "<group>"; };
+		1199D64F2207DC670042CD2D /* PlayScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayScene.sks; sourceTree = "<group>"; };
 		11CE17F121FB4C0E002A421F /* EndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndViewController.swift; sourceTree = "<group>"; };
 		11CE17F321FB4C4D002A421F /* EndScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndScene.swift; sourceTree = "<group>"; };
 		11CE17F521FB4C70002A421F /* EndScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndScene.sks; sourceTree = "<group>"; };
@@ -118,6 +130,12 @@
 				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				11824C6B21E636E300BB4A2C /* StartScene.sks */,
 				11824C7321E636E300BB4A2C /* Main.storyboard */,
+				1199D64B2207DC160042CD2D /* PlayViewController.swift */,
+				1199D64D2207DC460042CD2D /* PlayScene.swift */,
+				1199D64F2207DC670042CD2D /* PlayScene.sks */,
+				1199D6452207D89D0042CD2D /* ShopViewController.swift */,
+				1199D6472207D8D00042CD2D /* ShopScene.swift */,
+				1199D6492207D8F90042CD2D /* ShopScene.sks */,
 				11E3FF5721E63D6100BCC097 /* StatisticsViewController.swift */,
 				11E3FF5921E63DBB00BCC097 /* StatisticsScene.swift */,
 				11E3FF5B21E63DF500BCC097 /* StatisticsScene.sks */,
@@ -253,7 +271,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1199D6502207DC670042CD2D /* PlayScene.sks in Resources */,
 				11CE17F621FB4C70002A421F /* EndScene.sks in Resources */,
+				1199D64A2207D8F90042CD2D /* ShopScene.sks in Resources */,
 				11E3FF5C21E63DF500BCC097 /* StatisticsScene.sks in Resources */,
 				11824C7521E636E300BB4A2C /* Main.storyboard in Resources */,
 				11824C6C21E636E300BB4A2C /* StartScene.sks in Resources */,
@@ -286,9 +306,13 @@
 				11CE17F221FB4C0E002A421F /* EndViewController.swift in Sources */,
 				11CE17F421FB4C4D002A421F /* EndScene.swift in Sources */,
 				11824C7021E636E300BB4A2C /* StartScene.swift in Sources */,
+				1199D6482207D8D00042CD2D /* ShopScene.swift in Sources */,
 				11824C7221E636E300BB4A2C /* StartViewController.swift in Sources */,
+				1199D6462207D89D0042CD2D /* ShopViewController.swift in Sources */,
+				1199D64C2207DC160042CD2D /* PlayViewController.swift in Sources */,
 				11824C6A21E636E300BB4A2C /* AppDelegate.swift in Sources */,
 				11E3FF5A21E63DBB00BCC097 /* StatisticsScene.swift in Sources */,
+				1199D64E2207DC460042CD2D /* PlayScene.swift in Sources */,
 				11E3FF5821E63D6100BCC097 /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

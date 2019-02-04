@@ -1,8 +1,8 @@
 //
-//  GameViewController.swift
+//  ShopViewController.swift
 //  Sky Dropper
 //
-//  Created by Alexander Hall on 1/9/19.
+//  Created by Alexander Hall on 2/3/19.
 //  Copyright © 2019 Hall Inc. All rights reserved.
 //
 
@@ -10,16 +10,17 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class StartViewController: UIViewController {
+class ShopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'StartScene.sks'
-            if let scene = SKScene(fileNamed: "StartScene") {
+            // Load the SKScene from 'ShopScene.sks'
+            if let scene = SKScene(fileNamed: "ShopScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -31,14 +32,10 @@ class StartViewController: UIViewController {
         }
     }
     
-   /* @IBAction func segueToPlay(_ sender: Any) {
-        self.performSegue(withIdentifier: "startToPlay", sender: nil)
-    } */
-    
     override var shouldAutorotate: Bool {
         return true
     }
-
+    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
             return .allButUpsideDown
@@ -46,7 +43,7 @@ class StartViewController: UIViewController {
             return .all
         }
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
