@@ -12,6 +12,9 @@ import GameplayKit
 
 class PlayViewController: UIViewController {
     
+    var sceneHeight: CGFloat = 0
+    var sceneWidth: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +23,9 @@ class PlayViewController: UIViewController {
             if let scene = SKScene(fileNamed: "PlayScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                
+                sceneHeight = scene.size.height
+                sceneWidth = scene.size.width
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -30,6 +36,14 @@ class PlayViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+    }
+    
+    @IBAction func openPauseView(_ sender: Any) {
+        let window = UIApplication.shared.keyWindow!
+        let v = UIView(frame: CGRect(x: sceneHeight/16, y: sceneHeight/16, width: sceneWidth/3, height: sceneHeight/2.7))
+        window.addSubview(v);
+        v.backgroundColor = UIColor.black
+        
     }
     
     override var shouldAutorotate: Bool {

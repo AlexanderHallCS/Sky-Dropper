@@ -31,10 +31,6 @@ class StartViewController: UIViewController {
         }
     }
     
-   /* @IBAction func segueToPlay(_ sender: Any) {
-        self.performSegue(withIdentifier: "startToPlay", sender: nil)
-    } */
-    
     override var shouldAutorotate: Bool {
         return true
     }

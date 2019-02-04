@@ -67,17 +67,31 @@
         <!--Play Controller-->
         <scene sceneID="ief-DM-2MB">
             <objects>
-                <viewController title="Play Controller" id="GA5-EZ-QQt" sceneMemberID="viewController">
+                <viewController title="Play Controller" id="GA5-EZ-QQt" customClass="PlayViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bhl-NJ-xWV" userLabel="PlayViewController" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StartingBG" translatesAutoresizingMaskIntoConstraints="NO" id="Z1S-WL-7oQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHv-5x-YM7">
+                                <rect key="frame" x="322" y="0.0" width="53" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="PauseButton"/>
+                                <connections>
+                                    <action selector="openPauseView:" destination="GA5-EZ-QQt" eventType="touchUpInside" id="wwa-zJ-wNk"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="puX-YM-Pd1"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTt-QJ-4cn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="36"/>
+            <point key="canvasLocation" x="1464.8" y="35.532233883058474"/>
         </scene>
         <!--Statistics View Controller-->
         <scene sceneID="3Jw-Og-mE8">
@@ -111,6 +125,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="PauseButton" width="185" height="185"/>
         <image name="PlayButton" width="217" height="116"/>
         <image name="ScoresAndStats" width="217" height="116"/>
         <image name="ShopButton" width="217" height="116"/>
