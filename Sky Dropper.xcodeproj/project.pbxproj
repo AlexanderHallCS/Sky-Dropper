@@ -16,6 +16,7 @@
 		11824C7A21E636E500BB4A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11824C7821E636E500BB4A2C /* LaunchScreen.storyboard */; };
 		11824C8521E636E500BB4A2C /* Sky_DropperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11824C8421E636E500BB4A2C /* Sky_DropperTests.swift */; };
 		11824C9021E636E500BB4A2C /* Sky_DropperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11824C8F21E636E500BB4A2C /* Sky_DropperUITests.swift */; };
+		1191CCBC220B1EEE0081641C /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1191CCBB220B1EEE0081641C /* PauseViewController.swift */; };
 		1199D6462207D89D0042CD2D /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199D6452207D89D0042CD2D /* ShopViewController.swift */; };
 		1199D6482207D8D00042CD2D /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199D6472207D8D00042CD2D /* ShopScene.swift */; };
 		1199D64A2207D8F90042CD2D /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1199D6492207D8F90042CD2D /* ShopScene.sks */; };
@@ -63,6 +64,7 @@
 		11824C8B21E636E500BB4A2C /* Sky DropperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sky DropperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11824C8F21E636E500BB4A2C /* Sky_DropperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sky_DropperUITests.swift; sourceTree = "<group>"; };
 		11824C9121E636E500BB4A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1191CCBB220B1EEE0081641C /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		1199D6452207D89D0042CD2D /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		1199D6472207D8D00042CD2D /* ShopScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
 		1199D6492207D8F90042CD2D /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShopScene.sks; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				11824C6B21E636E300BB4A2C /* StartScene.sks */,
 				11824C7321E636E300BB4A2C /* Main.storyboard */,
+				1191CCBB220B1EEE0081641C /* PauseViewController.swift */,
 				1199D64B2207DC160042CD2D /* PlayViewController.swift */,
 				1199D64D2207DC460042CD2D /* PlayScene.swift */,
 				1199D64F2207DC670042CD2D /* PlayScene.sks */,
@@ -308,6 +311,7 @@
 				11824C7021E636E300BB4A2C /* StartScene.swift in Sources */,
 				1199D6482207D8D00042CD2D /* ShopScene.swift in Sources */,
 				11824C7221E636E300BB4A2C /* StartViewController.swift in Sources */,
+				1191CCBC220B1EEE0081641C /* PauseViewController.swift in Sources */,
 				1199D6462207D89D0042CD2D /* ShopViewController.swift in Sources */,
 				1199D64C2207DC160042CD2D /* PlayViewController.swift in Sources */,
 				11824C6A21E636E300BB4A2C /* AppDelegate.swift in Sources */,

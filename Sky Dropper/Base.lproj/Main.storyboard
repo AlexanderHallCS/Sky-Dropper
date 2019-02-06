@@ -93,6 +93,48 @@
             </objects>
             <point key="canvasLocation" x="1464.8" y="35.532233883058474"/>
         </scene>
+        <!--Pause View-->
+        <scene sceneID="35N-2e-bia">
+            <objects>
+                <viewController storyboardIdentifier="pausePopUpID" title="Pause View" id="QpN-3c-DV1" customClass="PauseViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2wu-VI-EHR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-3Z-XSk">
+                                <rect key="frame" x="67" y="140" width="240" height="362"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIW-dO-Qnf">
+                                        <rect key="frame" x="56" y="283" width="128" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="BackToHome"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XT-Fq-lgb">
+                                        <rect key="frame" x="56" y="204" width="128" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="RestartButton"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-bB-9rr">
+                                        <rect key="frame" x="56" y="125" width="128" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ContinueButton"/>
+                                        <connections>
+                                            <action selector="backOut:" destination="QpN-3c-DV1" eventType="touchUpInside" id="LMc-VX-WLA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25426403489999999" green="0.71565504609999997" blue="0.651040854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1hO-WY-WIm"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5aZ-nm-0KV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1474.4000000000001" y="702.99850074962524"/>
+        </scene>
         <!--Statistics View Controller-->
         <scene sceneID="3Jw-Og-mE8">
             <objects>
@@ -125,8 +167,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BackToHome" width="217" height="116"/>
+        <image name="ContinueButton" width="217" height="116"/>
         <image name="PauseButton" width="185" height="185"/>
         <image name="PlayButton" width="217" height="116"/>
+        <image name="RestartButton" width="217" height="116"/>
         <image name="ScoresAndStats" width="217" height="116"/>
         <image name="ShopButton" width="217" height="116"/>
         <image name="StartingBG" width="1080" height="1920"/>

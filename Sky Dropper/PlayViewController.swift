@@ -39,11 +39,16 @@ class PlayViewController: UIViewController {
     }
     
     @IBAction func openPauseView(_ sender: Any) {
-        let window = UIApplication.shared.keyWindow!
+        /*let window = UIApplication.shared.keyWindow!
         let v = UIView(frame: CGRect(x: sceneHeight/16, y: sceneHeight/16, width: sceneWidth/3, height: sceneHeight/2.7))
         window.addSubview(v);
-        v.backgroundColor = UIColor.black
+        v.backgroundColor = UIColor.black */
         
+        let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pausePopUpID") as! PauseViewController
+        self.addChild(pauseVC)
+        pauseVC.view.frame = self.view.frame
+        self.view.addSubview(pauseVC.view)
+        pauseVC.didMove(toParent: self)
     }
     
     override var shouldAutorotate: Bool {
