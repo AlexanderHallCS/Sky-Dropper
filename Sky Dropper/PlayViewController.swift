@@ -10,10 +10,17 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+
+
+
 class PlayViewController: UIViewController {
     
     var sceneHeight: CGFloat = 0
     var sceneWidth: CGFloat = 0
+    
+    struct GlobalPause {
+        static var paused = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +33,6 @@ class PlayViewController: UIViewController {
                 
                 sceneHeight = scene.size.height
                 sceneWidth = scene.size.width
-                
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -39,16 +45,12 @@ class PlayViewController: UIViewController {
     }
     
     @IBAction func openPauseView(_ sender: Any) {
-        /*let window = UIApplication.shared.keyWindow!
-        let v = UIView(frame: CGRect(x: sceneHeight/16, y: sceneHeight/16, width: sceneWidth/3, height: sceneHeight/2.7))
-        window.addSubview(v);
-        v.backgroundColor = UIColor.black */
-        
         let pauseVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pausePopUpID") as! PauseViewController
         self.addChild(pauseVC)
         pauseVC.view.frame = self.view.frame
         self.view.addSubview(pauseVC.view)
         pauseVC.didMove(toParent: self)
+        GlobalPause.paused = true
     }
     
     override var shouldAutorotate: Bool {

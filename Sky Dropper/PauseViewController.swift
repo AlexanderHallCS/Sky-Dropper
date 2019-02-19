@@ -17,10 +17,22 @@ class PauseViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         self.animateIn()
-        
     }
     
+   /* override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print("appeared")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        print("disappeared")
+    } */
+    
     @IBAction func backOut(_ sender: Any) {
+        
+        PlayViewController.GlobalPause.paused = false
+        
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             self.view.alpha = 0.0;

@@ -9,16 +9,27 @@
 import SpriteKit
 import GameplayKit
 
-class PlayScene: SKScene {
+class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var fallingItems :[SKSpriteNode] = [SKSpriteNode]()
     let redAppleTexture = SKTexture(imageNamed: "FallingAppleRed")
     let greenAppleTexture = SKTexture(imageNamed: "FallingAppleGreen")
     let yellowAppleTexture = SKTexture(imageNamed: "FallingAppleYellow")
     
+    let backgroundTexture = SKTexture(imageNamed: "StartingBG")
+    
+    let worldNode = SKNode()
+    
     override func didMove(to view: SKView) {
-        
+        physicsWorld.contactDelegate = self
+        let background = SKSpriteNode(texture: backgroundTexture)
+        //background.size.width = self.size.width
+        //background.size.height = self.size.height
+        background.size = self.frame.size
+        addChild(background)
+        addChild(worldNode)
     }
+    
     
     func spawnApple() {
         let redApple = SKSpriteNode(texture: redAppleTexture)
@@ -26,9 +37,10 @@ class PlayScene: SKScene {
         redApple.physicsBody!.isDynamic = true
         redApple.physicsBody!.usesPreciseCollisionDetection = true
         redApple.physicsBody!.affectedByGravity = false
-        redApple.physicsBody!.velocity = CGVector.init(dx: 0, dy: -400)
-        redApple.position = CGPoint(x: 0, y: 0)
-        addChild(redApple)
+        redApple.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
+        redApple.position = CGPoint(x: 0, y: 300)
+        redApple.zPosition = 1
+        worldNode.addChild(redApple)
         fallingItems.append(redApple)
     }
     
@@ -48,8 +60,19 @@ class PlayScene: SKScene {
         
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if(fallingItems.count == 0) {
+         spawnApple()
+        }
+        
+        if(PlayViewController.GlobalPause.paused == true) {
+            worldNode.isPaused = true
+            physicsWorld.speed = 0
+        } else {
+            worldNode.isPaused = false
+            physicsWorld.speed = 1
+        }
+        
     }
 }
