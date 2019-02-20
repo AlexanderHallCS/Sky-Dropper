@@ -26,6 +26,9 @@
                                 <rect key="frame" x="78" y="430" width="217" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ShopButton"/>
+                                <connections>
+                                    <segue destination="3PQ-4p-Vsg" kind="show" animates="NO" id="xl0-uD-kQg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOM-rQ-Lxj">
                                 <rect key="frame" x="78" y="551" width="217" height="116"/>
@@ -37,7 +40,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="PlayButton"/>
                                 <connections>
-                                    <segue destination="GA5-EZ-QQt" kind="show" identifier="startToPlay" id="cO6-dU-Zgy"/>
+                                    <segue destination="GA5-EZ-QQt" kind="show" identifier="startToPlay" animates="NO" id="cO6-dU-Zgy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -56,13 +59,23 @@
                     <view key="view" contentMode="scaleToFill" id="0pg-Cb-0N5" userLabel="ShopViewController" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r74-3E-hMq">
+                                <rect key="frame" x="0.0" y="0.0" width="54" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="BackArrow"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="uEH-RF-rt9"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gHo-VQ-W2C"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="urt-lR-NI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2351" y="38"/>
+            <point key="canvasLocation" x="2349.5999999999999" y="37.331334332833585"/>
         </scene>
         <!--Play Controller-->
         <scene sceneID="ief-DM-2MB">
@@ -113,6 +126,9 @@
                                         <rect key="frame" x="56" y="283" width="128" height="71"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="BackToHome"/>
+                                        <connections>
+                                            <action selector="backToHomeButton:" destination="QpN-3c-DV1" eventType="touchUpInside" id="SRa-DA-Dki"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XT-Fq-lgb">
                                         <rect key="frame" x="56" y="204" width="128" height="71"/>
@@ -133,6 +149,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1hO-WY-WIm"/>
                     </view>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="segueFromPauseToStart" animates="NO" id="eZw-wz-7Bw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5aZ-nm-0KV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -170,6 +189,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BackArrow" width="142" height="142"/>
         <image name="BackToHome" width="217" height="116"/>
         <image name="ContinueButton" width="217" height="116"/>
         <image name="PauseButton" width="185" height="185"/>
@@ -179,4 +199,7 @@
         <image name="ShopButton" width="217" height="116"/>
         <image name="StartingBG" width="1080" height="1920"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="eZw-wz-7Bw"/>
+    </inferredMetricsTieBreakers>
 </document>

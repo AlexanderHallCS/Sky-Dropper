@@ -21,6 +21,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let worldNode = SKNode()
     
     override func didMove(to view: SKView) {
+      //  worldNode.isPaused = false
+      //  physicsWorld.speed = 1
+        
         physicsWorld.contactDelegate = self
         let background = SKSpriteNode(texture: backgroundTexture)
         //background.size.width = self.size.width
@@ -29,7 +32,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(background)
         addChild(worldNode)
     }
-    
     
     func spawnApple() {
         let redApple = SKSpriteNode(texture: redAppleTexture)
@@ -73,6 +75,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             worldNode.isPaused = false
             physicsWorld.speed = 1
         }
+        
+        /*if(PlayViewController.GlobalPause.isDeinitializing == true) {
+            self.removeAllChildren()
+            worldNode.removeAllChildren()
+            worldNode.isPaused = false
+            physicsWorld.speed = 1
+            PlayViewController.GlobalPause.paused = false
+            print("deinitialize")
+        } */
         
     }
 }

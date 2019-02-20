@@ -129,12 +129,12 @@
 			children = (
 				11824C6921E636E300BB4A2C /* AppDelegate.swift */,
 				11824C7121E636E300BB4A2C /* StartViewController.swift */,
-				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				11824C6B21E636E300BB4A2C /* StartScene.sks */,
 				11824C7321E636E300BB4A2C /* Main.storyboard */,
 				1191CCBB220B1EEE0081641C /* PauseViewController.swift */,
 				1199D64B2207DC160042CD2D /* PlayViewController.swift */,
 				1199D64D2207DC460042CD2D /* PlayScene.swift */,
+				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				1199D64F2207DC670042CD2D /* PlayScene.sks */,
 				1199D6452207D89D0042CD2D /* ShopViewController.swift */,
 				1199D6472207D8D00042CD2D /* ShopScene.swift */,

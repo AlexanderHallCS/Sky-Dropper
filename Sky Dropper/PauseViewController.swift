@@ -19,18 +19,7 @@ class PauseViewController: UIViewController {
         self.animateIn()
     }
     
-   /* override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        print("appeared")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        print("disappeared")
-    } */
-    
     @IBAction func backOut(_ sender: Any) {
-        
         PlayViewController.GlobalPause.paused = false
         
         UIView.animate(withDuration: 0.25, animations: {
@@ -51,6 +40,11 @@ class PauseViewController: UIViewController {
             self.view.alpha = 1.0
             self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         });
+    }
+    @IBAction func backToHomeButton(_ sender: Any) {
+        PlayViewController.GlobalPause.paused = false
+       // PlayViewController.GlobalPause.isDeinitializing = true
+        self.performSegue(withIdentifier: "segueFromPauseToStart", sender: nil)
     }
     
     override var shouldAutorotate: Bool {

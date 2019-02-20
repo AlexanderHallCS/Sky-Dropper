@@ -20,6 +20,7 @@ class PlayViewController: UIViewController {
     
     struct GlobalPause {
         static var paused = false
+      //  static var isDeinitializing = false
     }
     
     override func viewDidLoad() {
@@ -51,6 +52,7 @@ class PlayViewController: UIViewController {
         self.view.addSubview(pauseVC.view)
         pauseVC.didMove(toParent: self)
         GlobalPause.paused = true
+        print("the gates are open")
     }
     
     override var shouldAutorotate: Bool {
