@@ -11,8 +11,12 @@ import GameplayKit
 
 class ShopScene: SKScene {
     
+    
+    
     override func didMove(to view: SKView) {
-        
+        let safeAreaRect = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height*0.02))
+        safeAreaRect.fillColor = SKColor.orange
+       // safeAreaRect.position =SK
     }
     
     

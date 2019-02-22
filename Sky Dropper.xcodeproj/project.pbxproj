@@ -29,6 +29,9 @@
 		11E3FF5821E63D6100BCC097 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E3FF5721E63D6100BCC097 /* StatisticsViewController.swift */; };
 		11E3FF5A21E63DBB00BCC097 /* StatisticsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E3FF5921E63DBB00BCC097 /* StatisticsScene.swift */; };
 		11E3FF5C21E63DF500BCC097 /* StatisticsScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11E3FF5B21E63DF500BCC097 /* StatisticsScene.sks */; };
+		11F8CFD1222036B40093CD37 /* BackgroundScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F8CFD0222036B40093CD37 /* BackgroundScrollViewController.swift */; };
+		11F8CFD3222037010093CD37 /* BackgroundScrollViewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11F8CFD2222037010093CD37 /* BackgroundScrollViewScene.sks */; };
+		11F8CFD52220373E0093CD37 /* BackgroundScrollViewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F8CFD42220373E0093CD37 /* BackgroundScrollViewScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		11E3FF5721E63D6100BCC097 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		11E3FF5921E63DBB00BCC097 /* StatisticsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsScene.swift; sourceTree = "<group>"; };
 		11E3FF5B21E63DF500BCC097 /* StatisticsScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StatisticsScene.sks; sourceTree = "<group>"; };
+		11F8CFD0222036B40093CD37 /* BackgroundScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundScrollViewController.swift; sourceTree = "<group>"; };
+		11F8CFD2222037010093CD37 /* BackgroundScrollViewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BackgroundScrollViewScene.sks; sourceTree = "<group>"; };
+		11F8CFD42220373E0093CD37 /* BackgroundScrollViewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundScrollViewScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,12 +135,15 @@
 			children = (
 				11824C6921E636E300BB4A2C /* AppDelegate.swift */,
 				11824C7121E636E300BB4A2C /* StartViewController.swift */,
+				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				11824C6B21E636E300BB4A2C /* StartScene.sks */,
 				11824C7321E636E300BB4A2C /* Main.storyboard */,
+				11F8CFD0222036B40093CD37 /* BackgroundScrollViewController.swift */,
+				11F8CFD42220373E0093CD37 /* BackgroundScrollViewScene.swift */,
+				11F8CFD2222037010093CD37 /* BackgroundScrollViewScene.sks */,
 				1191CCBB220B1EEE0081641C /* PauseViewController.swift */,
 				1199D64B2207DC160042CD2D /* PlayViewController.swift */,
 				1199D64D2207DC460042CD2D /* PlayScene.swift */,
-				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				1199D64F2207DC670042CD2D /* PlayScene.sks */,
 				1199D6452207D89D0042CD2D /* ShopViewController.swift */,
 				1199D6472207D8D00042CD2D /* ShopScene.swift */,
@@ -274,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11F8CFD3222037010093CD37 /* BackgroundScrollViewScene.sks in Resources */,
 				1199D6502207DC670042CD2D /* PlayScene.sks in Resources */,
 				11CE17F621FB4C70002A421F /* EndScene.sks in Resources */,
 				1199D64A2207D8F90042CD2D /* ShopScene.sks in Resources */,
@@ -308,6 +318,7 @@
 			files = (
 				11CE17F221FB4C0E002A421F /* EndViewController.swift in Sources */,
 				11CE17F421FB4C4D002A421F /* EndScene.swift in Sources */,
+				11F8CFD52220373E0093CD37 /* BackgroundScrollViewScene.swift in Sources */,
 				11824C7021E636E300BB4A2C /* StartScene.swift in Sources */,
 				1199D6482207D8D00042CD2D /* ShopScene.swift in Sources */,
 				11824C7221E636E300BB4A2C /* StartViewController.swift in Sources */,
@@ -316,6 +327,7 @@
 				1199D64C2207DC160042CD2D /* PlayViewController.swift in Sources */,
 				11824C6A21E636E300BB4A2C /* AppDelegate.swift in Sources */,
 				11E3FF5A21E63DBB00BCC097 /* StatisticsScene.swift in Sources */,
+				11F8CFD1222036B40093CD37 /* BackgroundScrollViewController.swift in Sources */,
 				1199D64E2207DC460042CD2D /* PlayScene.swift in Sources */,
 				11E3FF5821E63D6100BCC097 /* StatisticsViewController.swift in Sources */,
 			);

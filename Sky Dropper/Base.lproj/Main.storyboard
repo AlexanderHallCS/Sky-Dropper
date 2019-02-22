@@ -34,6 +34,9 @@
                                 <rect key="frame" x="78" y="551" width="217" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ScoresAndStats"/>
+                                <connections>
+                                    <segue destination="kTm-f3-JTK" kind="show" identifier="startToStats" id="XZH-Nj-xLa"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbw-i6-3ks">
                                 <rect key="frame" x="78" y="308" width="217" height="116"/>
@@ -55,17 +58,40 @@
         <!--Shop Controller-->
         <scene sceneID="nOQ-xE-Plh">
             <objects>
-                <viewController title="Shop Controller" id="3PQ-4p-Vsg" sceneMemberID="viewController">
+                <viewController title="Shop Controller" id="3PQ-4p-Vsg" customClass="ShopViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0pg-Cb-0N5" userLabel="ShopViewController" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r74-3E-hMq">
-                                <rect key="frame" x="0.0" y="0.0" width="54" height="53"/>
+                                <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="BackArrow"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="uEH-RF-rt9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-v9-XWl">
+                                <rect key="frame" x="42" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="UpgradesSelectedButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vn-8G-Vio">
+                                <rect key="frame" x="126" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ItemsUnselectedButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toX-6F-O2i">
+                                <rect key="frame" x="210" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="SkinsUnselectedButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJ1-rQ-1xq">
+                                <rect key="frame" x="294" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BackgroundsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="Cr9-Yo-mZF" kind="show" animates="NO" id="z6u-ao-Bgx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -157,6 +183,82 @@
             </objects>
             <point key="canvasLocation" x="1474.4000000000001" y="702.99850074962524"/>
         </scene>
+        <!--Background Scroll View Controller-->
+        <scene sceneID="Bd3-sY-0Uf">
+            <objects>
+                <viewController title="Background Scroll View Controller" id="Cr9-Yo-mZF" customClass="BackgroundScrollViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mcd-uV-71U" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW5-3b-qQQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="980"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UxD-jM-H9Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXv-7A-6Zo">
+                                                <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="BackArrow"/>
+                                                <connections>
+                                                    <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="D0J-mt-KGE"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUl-fx-Fqv">
+                                                <rect key="frame" x="42" y="20" width="81" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button" image="UpgradesUnselectedButton"/>
+                                                <connections>
+                                                    <segue destination="3PQ-4p-Vsg" kind="show" identifier="backgroundsToUpgrades" animates="NO" id="o9r-73-vdI"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0MA-vm-36r">
+                                                <rect key="frame" x="126" y="20" width="81" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="ItemsUnselectedButton"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmh-z2-Y9u">
+                                                <rect key="frame" x="210" y="20" width="81" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="SkinsUnselectedButton"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-7I-JfW">
+                                                <rect key="frame" x="294" y="20" width="81" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="BackgroundsSelectedButton"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="6Vn-Yh-PUv"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="UxD-jM-H9Q" firstAttribute="leading" secondItem="WW5-3b-qQQ" secondAttribute="leading" id="IY3-N4-TPQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="UxD-jM-H9Q" secondAttribute="trailing" id="cO6-Tf-ecd"/>
+                                    <constraint firstItem="UxD-jM-H9Q" firstAttribute="top" secondItem="WW5-3b-qQQ" secondAttribute="top" id="fih-tL-Ofo"/>
+                                    <constraint firstAttribute="bottom" secondItem="UxD-jM-H9Q" secondAttribute="bottom" id="vSH-lj-CjA"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WW5-3b-qQQ" firstAttribute="leading" secondItem="FEr-5o-VOY" secondAttribute="leading" id="0Zs-Vm-wR9"/>
+                            <constraint firstItem="UxD-jM-H9Q" firstAttribute="width" secondItem="Mcd-uV-71U" secondAttribute="width" id="KfC-O2-Pjm"/>
+                            <constraint firstItem="FEr-5o-VOY" firstAttribute="trailing" secondItem="WW5-3b-qQQ" secondAttribute="trailing" id="cJg-xz-P46"/>
+                            <constraint firstItem="WW5-3b-qQQ" firstAttribute="top" secondItem="FEr-5o-VOY" secondAttribute="top" id="gvE-Lf-ub8"/>
+                            <constraint firstItem="FEr-5o-VOY" firstAttribute="bottom" secondItem="WW5-3b-qQQ" secondAttribute="bottom" id="jpF-4Z-MfJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FEr-5o-VOY"/>
+                    </view>
+                    <size key="freeformSize" width="375" height="1000"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dDb-0V-aIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2350" y="865"/>
+        </scene>
         <!--Statistics View Controller-->
         <scene sceneID="3Jw-Og-mE8">
             <objects>
@@ -191,15 +293,22 @@
     <resources>
         <image name="BackArrow" width="142" height="142"/>
         <image name="BackToHome" width="217" height="116"/>
+        <image name="BackgroundsSelectedButton" width="215" height="114"/>
+        <image name="BackgroundsUnselectedButton" width="209" height="108"/>
         <image name="ContinueButton" width="217" height="116"/>
+        <image name="ItemsUnselectedButton" width="209" height="108"/>
         <image name="PauseButton" width="185" height="185"/>
         <image name="PlayButton" width="217" height="116"/>
         <image name="RestartButton" width="217" height="116"/>
         <image name="ScoresAndStats" width="217" height="116"/>
         <image name="ShopButton" width="217" height="116"/>
+        <image name="SkinsUnselectedButton" width="209" height="108"/>
         <image name="StartingBG" width="1080" height="1920"/>
+        <image name="UpgradesSelectedButton" width="215" height="114"/>
+        <image name="UpgradesUnselectedButton" width="209" height="108"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eZw-wz-7Bw"/>
+        <segue reference="o9r-73-vdI"/>
+        <segue reference="D0J-mt-KGE"/>
     </inferredMetricsTieBreakers>
 </document>

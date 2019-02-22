@@ -15,8 +15,6 @@ class StartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //PlayViewController.GlobalPause.isDeinitializing = false
-        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'StartScene.sks'
             if let scene = SKScene(fileNamed: "StartScene") {

@@ -52,7 +52,6 @@ class PlayViewController: UIViewController {
         self.view.addSubview(pauseVC.view)
         pauseVC.didMove(toParent: self)
         GlobalPause.paused = true
-        print("the gates are open")
     }
     
     override var shouldAutorotate: Bool {
