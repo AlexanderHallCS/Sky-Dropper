@@ -1,8 +1,8 @@
 //
-//  BackgroundScrollViewController.swift
+//  SkinsShopViewController.swift
 //  Sky Dropper
 //
-//  Created by Alexander Hall on 2/22/19.
+//  Created by Alexander Hall on 2/26/19.
 //  Copyright © 2019 Hall Inc. All rights reserved.
 //
 
@@ -10,14 +10,14 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class BackgroundScrollViewController: UIViewController {
+class SkinsShopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
             
-            if let scene = SKScene(fileNamed: "BackgroundScrollViewScene") {
+            if let scene = SKScene(fileNamed: "SkinsShopViewScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 // Present the scene
@@ -46,4 +46,3 @@ class BackgroundScrollViewController: UIViewController {
         return true
     }
 }
-

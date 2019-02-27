@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		116DAEA122257CFC0015BB7C /* ItemsShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */; };
+		116DAEA322257D5B0015BB7C /* ItemsShopViewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */; };
+		116DAEA522257D910015BB7C /* ItemsShopViewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */; };
+		116DAEA722257E410015BB7C /* SkinsShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA622257E410015BB7C /* SkinsShopViewController.swift */; };
+		116DAEA922257E6E0015BB7C /* SkinsShopViewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA822257E6E0015BB7C /* SkinsShopViewScene.swift */; };
+		116DAEAB22257EB00015BB7C /* SkinsShopViewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 116DAEAA22257EB00015BB7C /* SkinsShopViewScene.sks */; };
 		11824C6A21E636E300BB4A2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11824C6921E636E300BB4A2C /* AppDelegate.swift */; };
 		11824C6C21E636E300BB4A2C /* StartScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 11824C6B21E636E300BB4A2C /* StartScene.sks */; };
 		11824C7021E636E300BB4A2C /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11824C6F21E636E300BB4A2C /* StartScene.swift */; };
@@ -52,6 +58,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsShopViewController.swift; sourceTree = "<group>"; };
+		116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsShopViewScene.swift; sourceTree = "<group>"; };
+		116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemsShopViewScene.sks; sourceTree = "<group>"; };
+		116DAEA622257E410015BB7C /* SkinsShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinsShopViewController.swift; sourceTree = "<group>"; };
+		116DAEA822257E6E0015BB7C /* SkinsShopViewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinsShopViewScene.swift; sourceTree = "<group>"; };
+		116DAEAA22257EB00015BB7C /* SkinsShopViewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SkinsShopViewScene.sks; sourceTree = "<group>"; };
 		11824C6621E636E300BB4A2C /* Sky Dropper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sky Dropper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11824C6921E636E300BB4A2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11824C6B21E636E300BB4A2C /* StartScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScene.sks; sourceTree = "<group>"; };
@@ -138,6 +150,12 @@
 				11824C6F21E636E300BB4A2C /* StartScene.swift */,
 				11824C6B21E636E300BB4A2C /* StartScene.sks */,
 				11824C7321E636E300BB4A2C /* Main.storyboard */,
+				116DAEA622257E410015BB7C /* SkinsShopViewController.swift */,
+				116DAEA822257E6E0015BB7C /* SkinsShopViewScene.swift */,
+				116DAEAA22257EB00015BB7C /* SkinsShopViewScene.sks */,
+				116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */,
+				116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */,
+				116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */,
 				11F8CFD0222036B40093CD37 /* BackgroundScrollViewController.swift */,
 				11F8CFD42220373E0093CD37 /* BackgroundScrollViewScene.swift */,
 				11F8CFD2222037010093CD37 /* BackgroundScrollViewScene.sks */,
@@ -283,6 +301,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				116DAEA522257D910015BB7C /* ItemsShopViewScene.sks in Resources */,
+				116DAEAB22257EB00015BB7C /* SkinsShopViewScene.sks in Resources */,
 				11F8CFD3222037010093CD37 /* BackgroundScrollViewScene.sks in Resources */,
 				1199D6502207DC670042CD2D /* PlayScene.sks in Resources */,
 				11CE17F621FB4C70002A421F /* EndScene.sks in Resources */,
@@ -324,12 +344,16 @@
 				11824C7221E636E300BB4A2C /* StartViewController.swift in Sources */,
 				1191CCBC220B1EEE0081641C /* PauseViewController.swift in Sources */,
 				1199D6462207D89D0042CD2D /* ShopViewController.swift in Sources */,
+				116DAEA922257E6E0015BB7C /* SkinsShopViewScene.swift in Sources */,
+				116DAEA722257E410015BB7C /* SkinsShopViewController.swift in Sources */,
+				116DAEA322257D5B0015BB7C /* ItemsShopViewScene.swift in Sources */,
 				1199D64C2207DC160042CD2D /* PlayViewController.swift in Sources */,
 				11824C6A21E636E300BB4A2C /* AppDelegate.swift in Sources */,
 				11E3FF5A21E63DBB00BCC097 /* StatisticsScene.swift in Sources */,
 				11F8CFD1222036B40093CD37 /* BackgroundScrollViewController.swift in Sources */,
 				1199D64E2207DC460042CD2D /* PlayScene.swift in Sources */,
 				11E3FF5821E63D6100BCC097 /* StatisticsViewController.swift in Sources */,
+				116DAEA122257CFC0015BB7C /* ItemsShopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

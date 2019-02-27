@@ -66,7 +66,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r74-3E-hMq">
                                 <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="BackArrow"/>
+                                <state key="normal" image="BackArrow"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="uEH-RF-rt9"/>
                                 </connections>
@@ -74,17 +74,23 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcr-v9-XWl">
                                 <rect key="frame" x="42" y="20" width="81" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="UpgradesSelectedButton"/>
+                                <state key="normal" image="UpgradesSelectedButton"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vn-8G-Vio">
                                 <rect key="frame" x="126" y="20" width="81" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ItemsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="frO-w2-6ED" kind="show" identifier="upgradesToItems" animates="NO" id="L4i-Iq-zu3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toX-6F-O2i">
                                 <rect key="frame" x="210" y="20" width="81" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="SkinsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="3Q6-f8-AFh" kind="show" identifier="upgradesToSkins" animates="NO" id="zfO-0z-Olp"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJ1-rQ-1xq">
                                 <rect key="frame" x="294" y="20" width="81" height="39"/>
@@ -200,7 +206,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXv-7A-6Zo">
                                                 <rect key="frame" x="0.0" y="20" width="40" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button" image="BackArrow"/>
+                                                <state key="normal" image="BackArrow"/>
                                                 <connections>
                                                     <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="D0J-mt-KGE"/>
                                                 </connections>
@@ -208,7 +214,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUl-fx-Fqv">
                                                 <rect key="frame" x="42" y="20" width="81" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Button" image="UpgradesUnselectedButton"/>
+                                                <state key="normal" image="UpgradesUnselectedButton"/>
                                                 <connections>
                                                     <segue destination="3PQ-4p-Vsg" kind="show" identifier="backgroundsToUpgrades" animates="NO" id="o9r-73-vdI"/>
                                                 </connections>
@@ -217,11 +223,17 @@
                                                 <rect key="frame" x="126" y="20" width="81" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="ItemsUnselectedButton"/>
+                                                <connections>
+                                                    <segue destination="frO-w2-6ED" kind="show" identifier="backgroundsToItems" animates="NO" id="iAh-nU-ACF"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmh-z2-Y9u">
                                                 <rect key="frame" x="210" y="20" width="81" height="39"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="SkinsUnselectedButton"/>
+                                                <connections>
+                                                    <segue destination="3Q6-f8-AFh" kind="show" identifier="backgroundsToSkins" animates="NO" id="tN0-wY-fKU"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hD-7I-JfW">
                                                 <rect key="frame" x="294" y="20" width="81" height="39"/>
@@ -257,7 +269,115 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDb-0V-aIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2350" y="865"/>
+            <point key="canvasLocation" x="2097" y="1169"/>
+        </scene>
+        <!--Items View Controller-->
+        <scene sceneID="YIw-xY-sCw">
+            <objects>
+                <viewController title="Items View Controller" id="frO-w2-6ED" customClass="ItemsShopViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bSd-J6-Eqx" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-ds-Aqo">
+                                <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BackArrow"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="itemsToStart" animates="NO" id="jqj-XV-D6M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFs-wz-0Dc">
+                                <rect key="frame" x="126" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ItemsSelectedButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jjg-6C-rV6">
+                                <rect key="frame" x="42" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="UpgradesUnselectedButton"/>
+                                <connections>
+                                    <segue destination="3PQ-4p-Vsg" kind="show" identifier="itemsToUpgrades" animates="NO" id="3gX-Bq-Cq2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uF-pg-1J8">
+                                <rect key="frame" x="210" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="SkinsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="3Q6-f8-AFh" kind="show" identifier="itemsToSkins" animates="NO" id="GCg-tr-h4p"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUt-E6-jxq">
+                                <rect key="frame" x="294" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BackgroundsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="Cr9-Yo-mZF" kind="show" identifier="itemsToBackground" animates="NO" id="Ei1-50-yMH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="5Ty-au-xoM"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rwi-Yh-1SB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3094" y="933"/>
+        </scene>
+        <!--Skins View Controller Scene-->
+        <scene sceneID="UXq-mY-7aM">
+            <objects>
+                <viewController title="Skins View Controller Scene" id="3Q6-f8-AFh" customClass="SkinsShopViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pF3-eR-8vs" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29v-3o-EKU">
+                                <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BackArrow"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="itemsToStart" animates="NO" id="KBc-IB-dHq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXz-Ef-n13">
+                                <rect key="frame" x="42" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="UpgradesUnselectedButton"/>
+                                <connections>
+                                    <segue destination="3PQ-4p-Vsg" kind="show" identifier="skinsToUpgrades" animates="NO" id="cFY-eK-CwG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s1-vQ-eMh">
+                                <rect key="frame" x="126" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ItemsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="frO-w2-6ED" kind="show" identifier="skinsToItems" animates="NO" id="Ttp-1O-CR1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="otd-ov-SSK">
+                                <rect key="frame" x="210" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="SkinsSelectedButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P5l-jt-uOW">
+                                <rect key="frame" x="294" y="20" width="81" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="BackgroundsUnselectedButton"/>
+                                <connections>
+                                    <segue destination="Cr9-Yo-mZF" kind="show" identifier="skinsToBackgrounds" animates="NO" id="0D6-H7-N1b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="rvz-eY-Q7c"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l9R-7q-fXz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3961" y="900"/>
         </scene>
         <!--Statistics View Controller-->
         <scene sceneID="3Jw-Og-mE8">
@@ -278,7 +398,7 @@
         <scene sceneID="o6c-dz-SX4">
             <objects>
                 <viewController title="End View Controller" id="9nQ-WE-HaL" customClass="EndViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tTn-uv-qYL">
+                    <view key="view" contentMode="scaleToFill" id="tTn-uv-qYL" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -296,19 +416,24 @@
         <image name="BackgroundsSelectedButton" width="215" height="114"/>
         <image name="BackgroundsUnselectedButton" width="209" height="108"/>
         <image name="ContinueButton" width="217" height="116"/>
+        <image name="ItemsSelectedButton" width="215" height="114"/>
         <image name="ItemsUnselectedButton" width="209" height="108"/>
         <image name="PauseButton" width="185" height="185"/>
         <image name="PlayButton" width="217" height="116"/>
         <image name="RestartButton" width="217" height="116"/>
         <image name="ScoresAndStats" width="217" height="116"/>
         <image name="ShopButton" width="217" height="116"/>
+        <image name="SkinsSelectedButton" width="215" height="114"/>
         <image name="SkinsUnselectedButton" width="209" height="108"/>
         <image name="StartingBG" width="1080" height="1920"/>
         <image name="UpgradesSelectedButton" width="215" height="114"/>
         <image name="UpgradesUnselectedButton" width="209" height="108"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zfO-0z-Olp"/>
+        <segue reference="L4i-Iq-zu3"/>
+        <segue reference="z6u-ao-Bgx"/>
         <segue reference="o9r-73-vdI"/>
-        <segue reference="D0J-mt-KGE"/>
+        <segue reference="uEH-RF-rt9"/>
     </inferredMetricsTieBreakers>
 </document>
