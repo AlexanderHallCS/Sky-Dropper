@@ -20,6 +20,8 @@ class ItemsShopViewScene: SKScene {
     var barrierUpgradeBar = SKSpriteNode()
     var upgradeTexture = SKTexture(imageNamed: "UpgradeBar0")
     
+    var topRectBuffer = SKShapeNode()
+    
     override func didMove(to view: SKView) {
         rayGunButton = SKSpriteNode(texture: rayGunTexture)
         rayGunButton.name = "rayGun"
@@ -44,6 +46,12 @@ class ItemsShopViewScene: SKScene {
         barrierUpgradeBar.size = CGSize(width: 400, height: 80)
         barrierUpgradeBar.position = CGPoint(x: 0, y: self.size.height/4 - 770)
         addChild(barrierUpgradeBar)
+        
+        topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
+        topRectBuffer.fillColor = .orange
+        topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
+        addChild(topRectBuffer)
+        
     }
     
     
