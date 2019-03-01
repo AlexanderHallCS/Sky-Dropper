@@ -18,6 +18,9 @@ class ShopViewController: UIViewController {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'ShopScene.sks'
             if let scene = SKScene(fileNamed: "ShopScene") {
+                
+                scene.backgroundColor = SKColor.yellow
+                
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 

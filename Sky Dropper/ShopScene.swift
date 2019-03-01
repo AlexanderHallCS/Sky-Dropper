@@ -11,12 +11,30 @@ import GameplayKit
 
 class ShopScene: SKScene {
     
+    var extraLifeUpgrade = SKSpriteNode()
+    var extraLifeUpgradeTexture = SKTexture(imageNamed: "ExtraLifeOnStartOfGameButtonLocked")
+    var increasedSpeedUpgrade = SKSpriteNode()
+    var increasedSpeedUpgradeTexture = SKTexture(imageNamed: "IncreasedSpeedNextGameLockedButton")
     
+    var topRectBuffer = SKShapeNode()
     
     override func didMove(to view: SKView) {
-        let safeAreaRect = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height*0.02))
-        safeAreaRect.fillColor = SKColor.orange
-       // safeAreaRect.position =SK
+        topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
+        topRectBuffer.fillColor = .orange
+        topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
+        addChild(topRectBuffer)
+        
+        extraLifeUpgrade = SKSpriteNode(texture: extraLifeUpgradeTexture)
+        extraLifeUpgrade.name = "extraLifeUpgrade"
+        extraLifeUpgrade.size = CGSize(width: self.size.width/1.25, height: self.size.height/4)
+        extraLifeUpgrade.position = CGPoint(x: 0, y: self.size.height/4 - 220)
+        addChild(extraLifeUpgrade)
+
+        increasedSpeedUpgrade = SKSpriteNode(texture: increasedSpeedUpgradeTexture)
+        increasedSpeedUpgrade.name = "increasedSpeed"
+        increasedSpeedUpgrade.size = CGSize(width: self.size.width/1.25, height: self.size.height/4)
+        increasedSpeedUpgrade.position = CGPoint(x: 0, y: self.size.height/4 - 260 - self.size.height/4)
+        addChild(increasedSpeedUpgrade)
     }
     
     
