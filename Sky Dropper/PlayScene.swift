@@ -8,8 +8,13 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
+
+let motionManager: CMMotionManager = CMMotionManager()
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
+    
+    var charLocX: CGFloat = 0.0
     
     var fallingItems :[SKSpriteNode] = [SKSpriteNode]()
     let redAppleTexture = SKTexture(imageNamed: "FallingAppleRed")
@@ -19,6 +24,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let backgroundTexture = SKTexture(imageNamed: "StartingBG")
     
     let worldNode = SKNode()
+    
+    var characterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
+    var character = SKSpriteNode()
     
     override func didMove(to view: SKView) {
       //  worldNode.isPaused = false
@@ -31,6 +39,46 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         background.size = self.frame.size
         addChild(background)
         addChild(worldNode)
+        
+        character = SKSpriteNode(texture: characterTexture)
+        character.name = "character"
+        if(UIDevice.current.userInterfaceIdiom == .phone) {
+            character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/10)
+        } else if(UIDevice.current.userInterfaceIdiom == .pad) {
+            character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/10 * 3 - 30)
+        }
+        character.zPosition = 1
+        character.physicsBody = SKPhysicsBody(texture: characterTexture, size: characterTexture.size())
+        //character.physicsBody!.isDynamic = true
+        character.physicsBody!.isDynamic = false
+        //character.physicsBody!.usesPreciseCollisionDetection = true
+        character.physicsBody!.affectedByGravity = false
+        //character.physicsBody!.categoryBitMask = ColliderType.characterCategory.rawValue
+        //character.physicsBody!.collisionBitMask = 0
+        //character.physicsBody!.contactTestBitMask = ColliderType.bossBulletCategory.rawValue
+        addChild(character)
+        
+        motionManager.accelerometerUpdateInterval = 1.0/20.0
+        if motionManager.isAccelerometerAvailable == true {
+            motionManager.startAccelerometerUpdates(to: OperationQueue.current!)  { (data, error) in
+                let currentX = self.character.position.x
+                if data!.acceleration.x < 0.0 {
+                    if(!(currentX < -280)) {
+                        self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
+                        self.characterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
+                        self.character.texture = self.characterTexture
+                    }
+                } else if data!.acceleration.x > 0.0 {
+                    if(!(currentX > 310)) {
+                        self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
+                        self.characterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
+                        self.character.texture = self.characterTexture
+                    }
+                }
+                self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 9.0, dy: 0)
+            }
+        }
+        
     }
     
     func spawnApple() {
@@ -64,6 +112,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        let moveCharX = SKAction.moveTo(x: charLocX, duration: 0.08)
+        self.character.run(moveCharX)
+        
         if(fallingItems.count == 0) {
          spawnApple()
         }
