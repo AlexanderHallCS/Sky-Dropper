@@ -20,6 +20,9 @@ class BackgroundScrollViewScene: SKScene {
     var scrollingNodeTest = SKSpriteNode()
     var scrollingNodeTestTexture = SKTexture(imageNamed: "BackArrow")
     
+    var winterBGButton = SKSpriteNode()
+    var winterBGButtonTexture = SKTexture(imageNamed: "WinterBGShopButton")
+    
     override func didMove(to view: SKView) {
         scrollingNode.position = CGPoint(x: 0, y: 0)
         self.addChild(scrollingNode)
@@ -27,6 +30,7 @@ class BackgroundScrollViewScene: SKScene {
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
         topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
+        topRectBuffer.zPosition = 2
         //scrollingNode.addChild(topRectBuffer)
         addChild(topRectBuffer)
         
@@ -37,6 +41,10 @@ class BackgroundScrollViewScene: SKScene {
         scrollingNodeTest.position = CGPoint(x: -self.size.width/2, y: 0)
         scrollingNode.addChild(scrollingNodeTest)
         //remove after used
+        
+        winterBGButton = SKSpriteNode(texture: winterBGButtonTexture)
+        winterBGButton.position = CGPoint(x: 0, y: self.size.height/4)
+        scrollingNode.addChild(winterBGButton)
     }
     
     
