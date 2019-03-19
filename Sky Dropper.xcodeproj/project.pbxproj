@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11447502223CBADC0051206D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11447501223CBADC0051206D /* CoreData.framework */; };
+		11447504223CBAE70051206D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11447503223CBAE70051206D /* CoreMotion.framework */; };
 		116DAEA122257CFC0015BB7C /* ItemsShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */; };
 		116DAEA322257D5B0015BB7C /* ItemsShopViewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */; };
 		116DAEA522257D910015BB7C /* ItemsShopViewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11447501223CBADC0051206D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		11447503223CBAE70051206D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsShopViewController.swift; sourceTree = "<group>"; };
 		116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsShopViewScene.swift; sourceTree = "<group>"; };
 		116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemsShopViewScene.sks; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11447504223CBAE70051206D /* CoreMotion.framework in Frameworks */,
+				11447502223CBADC0051206D /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11447500223CBADC0051206D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11447503223CBAE70051206D /* CoreMotion.framework */,
+				11447501223CBADC0051206D /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		11824C5D21E636E300BB4A2C = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +144,7 @@
 				11824C8321E636E500BB4A2C /* Sky DropperTests */,
 				11824C8E21E636E500BB4A2C /* Sky DropperUITests */,
 				11824C6721E636E300BB4A2C /* Products */,
+				11447500223CBADC0051206D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -529,7 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57N89A5V72;
+				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				INFOPLIST_FILE = "Sky Dropper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -547,7 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 57N89A5V72;
+				DEVELOPMENT_TEAM = PFCM63NH3Y;
 				INFOPLIST_FILE = "Sky Dropper/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
