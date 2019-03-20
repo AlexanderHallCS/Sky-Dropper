@@ -15,7 +15,7 @@ let motionManager: CMMotionManager = CMMotionManager()
 enum ColliderType:UInt32 {
     case characterCategory = 0b01
     case fallingItemCategory = 0b10
-    case characterSphericalCollisionObjectCategory = 0b100
+    case characterCollisionObjectCategory = 0b100
 }
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
@@ -24,14 +24,30 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var fallingItems :[SKSpriteNode] = [SKSpriteNode]()
     let redAppleTexture = SKTexture(imageNamed: "FallingAppleRed")
+    let redFishTexture = SKTexture(imageNamed: "RedFish")
+    let redSnowflakeTexture = SKTexture(imageNamed: "RedSnowflake")
+    let redBananaTexture = SKTexture(imageNamed: "RedBanana")
+    let redAlienTexture = SKTexture(imageNamed: "RedAlien")
+    
     let greenAppleTexture = SKTexture(imageNamed: "FallingAppleGreen")
+    let greenFishTexture = SKTexture(imageNamed: "GreenFish")
+    let greenSnowflakeTexture = SKTexture(imageNamed: "GreenSnowflake")
+    let greenBananaTexture = SKTexture(imageNamed: "GreenBanana")
+    let greenAlienTexture = SKTexture(imageNamed: "GreenAlien")
+    
     let yellowAppleTexture = SKTexture(imageNamed: "FallingAppleYellow")
+    let yellowFishTexture = SKTexture(imageNamed: "YellowFish")
+    let yellowSnowflakeTexture = SKTexture(imageNamed: "YellowSnowflake")
+    let yellowBananaTexture = SKTexture(imageNamed: "YellowBanana")
+    let yellowAlienTexture = SKTexture(imageNamed: "YellowAlien")
     
     let backgroundTexture = SKTexture(imageNamed: "StartingBG")
     
     let worldNode = SKNode()
     
-    var characterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
+    var basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
+    var lacrosseCharacterTexture = SKTexture(imageNamed: "LacrossePlayerRight")
+    var astronautCharacterTexture = SKTexture(imageNamed: "AstronautSkinRight")
     var character = SKSpriteNode()
     
     var heartTexture = SKTexture(imageNamed: "Heart")
@@ -41,11 +57,20 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var heart4 = SKSpriteNode()
     var heart5 = SKSpriteNode()
     
+    var cloudCurrencyLabel = SKLabelNode()
+    var pointsLabel = SKLabelNode()
+    var cloudCurrencyThisGame = 0
+    var pointsThisGame = 0
+    
     var spawnFallingItemTimer = Timer()
+    
+    var characterCollisionObject = SKSpriteNode()
     
     override func didMove(to view: SKView) {
       //  worldNode.isPaused = false
       //  physicsWorld.speed = 1
+        cloudCurrencyThisGame = 0
+        pointsThisGame = 0
         
         physicsWorld.contactDelegate = self
         let background = SKSpriteNode(texture: backgroundTexture)
@@ -55,7 +80,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(background)
         addChild(worldNode)
         
-        character = SKSpriteNode(texture: characterTexture)
+        cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
+        cloudCurrencyLabel.fontName = "Baskerville"
+        cloudCurrencyLabel.fontSize = 60
+        cloudCurrencyLabel.fontColor = .yellow
+        cloudCurrencyLabel.position = CGPoint(x: self.size.width/4 * -1 - 55, y: self.size.height/4 + 210)
+        cloudCurrencyLabel.zPosition = 2
+        addChild(cloudCurrencyLabel)
+        
+        pointsLabel.text = "Score: \(pointsThisGame)"
+        pointsLabel.fontName = "Baskerville"
+        pointsLabel.fontSize = 60
+        pointsLabel.fontColor = .yellow
+        pointsLabel.position  = CGPoint(x: self.size.width/4 * -1 - 65, y: self.size.height/4 + 270)
+        pointsLabel.zPosition = 2
+        addChild(pointsLabel)
+        
+        characterCollisionObject = SKSpriteNode(texture: heartTexture)
+        characterCollisionObject.position = CGPoint(x: character.position.x + 50, y: character.position.y - 440)
+        characterCollisionObject.zPosition = 3
+        addChild(characterCollisionObject)
+        
+        character = SKSpriteNode(texture: basketCharacterTexture)
         character.name = "character"
         if(UIDevice.current.userInterfaceIdiom == .phone) {
             character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/10)
@@ -63,7 +109,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/10 * 3 - 30)
         }
         character.zPosition = 3
-        character.physicsBody = SKPhysicsBody(texture: characterTexture, size: characterTexture.size())
+        character.physicsBody = SKPhysicsBody(texture: basketCharacterTexture, size: basketCharacterTexture.size())
         //character.physicsBody!.isDynamic = true
         character.physicsBody!.isDynamic = false
         //character.physicsBody!.usesPreciseCollisionDetection = true
@@ -110,14 +156,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 if data!.acceleration.x < 0.0 {
                     if(!(currentX < -280)) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
-                        self.characterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
-                        self.character.texture = self.characterTexture
+                        self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
+                        self.character.texture = self.basketCharacterTexture
                     }
                 } else if data!.acceleration.x > 0.0 {
                     if(!(currentX > 310)) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 100)
-                        self.characterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
-                        self.character.texture = self.characterTexture
+                        self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
+                        self.character.texture = self.basketCharacterTexture
                     }
                 }
                 self.character.physicsBody?.velocity = CGVector(dx: (data?.acceleration.x)! * 9.0, dy: 0)
@@ -126,6 +172,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         spawnFallingItemTimer = Timer.scheduledTimer(timeInterval: 1.3, target: self, selector: #selector(self.spawnFallingItem), userInfo: nil, repeats: true)
         
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        // if(character.texture = yellowAppleTexture)
+        //20 clouds, 500 points
+        //green = 10 clouds, 250 points
+        //red = 1 cloud, 100 points
     }
     
     @objc func spawnFallingItem() {
