@@ -163,6 +163,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         motionManager.accelerometerUpdateInterval = 1.0/20.0
         if motionManager.isAccelerometerAvailable == true {
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!)  { (data, error) in
+                //.stopAccelerometerUpdates() when paused
                 let currentX = self.character.position.x
                 let currentCollisionX = self.characterCollisionObject.position.x
                 if data!.acceleration.x < 0.0 {
@@ -197,15 +198,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         spawnFallingItemTimer = Timer.scheduledTimer(timeInterval: 1.3, target: self, selector: #selector(self.spawnFallingItem), userInfo: nil, repeats: true)
         toggleFallingItemTimerCheck = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.toggleFallingItemTimer), userInfo: nil, repeats: true)
-        
-        
     }
     
+    
+    
     func didBegin(_ contact: SKPhysicsContact) {
-        // if(character.texture = yellowAppleTexture)
-        //20 clouds, 500 points
-        //green = 10 clouds, 250 points
-        //red = 1 cloud, 100 points
         
         //collision between basket and falling items
         var firstBody = SKPhysicsBody()
@@ -225,15 +222,26 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems[fallingItemIterator].removeFromParent()
                 fallingItems.remove(at: fallingItemIterator)
                 fallingItemIterator = fallingItemIterator - 1
-                print("rud")
+                cloudCurrencyThisGame = cloudCurrencyThisGame + 1
+                pointsThisGame = pointsThisGame + 100
+                cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
+                pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(firstBody.node == fallingItems[fallingItemIterator] && firstBody.node?.name == "green" && secondBody.node == characterCollisionObject) {
                 fallingItems[fallingItemIterator].removeFromParent()
                 fallingItems.remove(at: fallingItemIterator)
                 fallingItemIterator = fallingItemIterator - 1
+                cloudCurrencyThisGame = cloudCurrencyThisGame + 10
+                pointsThisGame = pointsThisGame + 250
+                pointsLabel.text = "Score: \(pointsThisGame)"
+                cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
             } else if(firstBody.node == fallingItems[fallingItemIterator] && firstBody.node?.name == "yellow" && secondBody.node == characterCollisionObject) {
                 fallingItems[fallingItemIterator].removeFromParent()
                 fallingItems.remove(at: fallingItemIterator)
                 fallingItemIterator = fallingItemIterator - 1
+                cloudCurrencyThisGame = cloudCurrencyThisGame + 20
+                pointsThisGame = pointsThisGame + 500
+                cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
+                pointsLabel.text = "Score: \(pointsThisGame)"
             }
             fallingItemIterator = fallingItemIterator + 1
         }
@@ -352,7 +360,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 iterator = iterator - 1
                 //fallingItemsDropped = fallingItemsDropped + 1
                 //remove heart5-->4-->3-->2-->1-->gameover
-                print("removed")
             }
             iterator = iterator + 1
         }
