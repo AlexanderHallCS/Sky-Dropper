@@ -70,6 +70,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var characterCollisionObject = SKSpriteNode()
     var isGoingLeft = false
     
+    var lives = 5
+    var viewController: UIViewController?
+    
     override func didMove(to view: SKView) {
         //worldNode.isPaused = false
         //physicsWorld.speed = 1
@@ -84,20 +87,24 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         addChild(background)
         addChild(worldNode)
         
+        lives = 5
+        
         cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
         cloudCurrencyLabel.fontName = "Baskerville"
         cloudCurrencyLabel.fontSize = 60
         cloudCurrencyLabel.fontColor = .yellow
-        cloudCurrencyLabel.position = CGPoint(x: self.size.width/4 * -1 - 55, y: self.size.height/4 + 210)
+        cloudCurrencyLabel.position = CGPoint(x: self.size.width/4 * -1 - 157, y: self.size.height/4 + 210)
         cloudCurrencyLabel.zPosition = 2
+        cloudCurrencyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         addChild(cloudCurrencyLabel)
         
         pointsLabel.text = "Score: \(pointsThisGame)"
         pointsLabel.fontName = "Baskerville"
         pointsLabel.fontSize = 60
         pointsLabel.fontColor = .yellow
-        pointsLabel.position  = CGPoint(x: self.size.width/4 * -1 - 65, y: self.size.height/4 + 270)
+        pointsLabel.position  = CGPoint(x: self.size.width/4 * -1 - 155, y: self.size.height/4 + 270)
         pointsLabel.zPosition = 2
+        pointsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         addChild(pointsLabel)
         
         characterCollisionObject = SKSpriteNode(texture: heartTexture)
@@ -358,8 +365,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems[iterator].removeFromParent()
                 fallingItems.remove(at: iterator)
                 iterator = iterator - 1
-                //fallingItemsDropped = fallingItemsDropped + 1
-                //remove heart5-->4-->3-->2-->1-->gameover
+                if(lives == 5) {
+                    //fallingItemsDropped = fallingItemsDropped + 1
+                    heart5.removeFromParent()
+                    lives = lives-1
+                } else if(lives == 4){
+                    //fallingItemsDropped = fallingItemsDropped + 1
+                    heart4.removeFromParent()
+                    lives = lives-1
+                } else if(lives == 3) {
+                    //fallingItemsDropped = fallingItemsDropped + 1
+                    heart3.removeFromParent()
+                    lives = lives-1
+                } else if(lives == 2) {
+                    //fallingItemsDropped = fallingItemsDropped + 1
+                    heart2.removeFromParent()
+                    lives = lives-1
+                } else if(lives == 1) {
+                    //fallingItemsDropped = fallingItemsDropped + 1
+                    heart1.removeFromParent()
+                    lives = lives-1
+                    
+                    viewController?.performSegue(withIdentifier: "playToEnd", sender: nil)
+                }
             }
             iterator = iterator + 1
         }
@@ -388,10 +416,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         self.character.run(moveCharX)
         let moveCollisionCharX = SKAction.moveTo(x: charCollisionLocX, duration: 0.08)
         self.characterCollisionObject.run(moveCollisionCharX)
-        
-        /*if(fallingItems.count == 0) {
-         spawnFallingItem()
-        } */
         
         if(PlayViewController.GlobalPause.paused == true) {
             worldNode.isPaused = true

@@ -14,20 +14,30 @@ class EndViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        self.animateIn()
+        if let view = self.view as! SKView? {
+            
+            if let scene = SKScene(fileNamed: "EndViewScene") {
+                
+                scene.backgroundColor = SKColor.yellow
+                
+                // Set the scale mode to scale to fit the window
+                scene.scaleMode = .aspectFill
+                // Present the scene
+                view.presentScene(scene)
+            }
+            
+            view.ignoresSiblingOrder = true
+            view.showsFPS = true
+            view.showsNodeCount = true
+        }
     }
     
-    func animateIn() {
-        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        self.view.alpha = 0.0;
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.alpha = 1.0
-            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        });
+    @IBAction func playAgain(_ sender: Any) {
+        self.performSegue(withIdentifier: "endToPlay", sender: nil)
     }
-    
+    @IBAction func backToHome(_ sender: Any) {
+        self.performSegue(withIdentifier: "endToStart", sender: nil)
+    }
     override var shouldAutorotate: Bool {
         return true
     }
