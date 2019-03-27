@@ -11,12 +11,14 @@ import GameplayKit
 import CoreMotion
 
 let motionManager: CMMotionManager = CMMotionManager()
+var viewController: UIViewController?
 
 enum ColliderType:UInt32 {
     case characterCategory = 0b01
     case fallingItemCategory = 0b10
     case characterCollisionObjectCategory = 0b100
 }
+
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
@@ -71,7 +73,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var isGoingLeft = false
     
     var lives = 5
-    var viewController: UIViewController?
     
     override func didMove(to view: SKView) {
         //worldNode.isPaused = false
@@ -385,7 +386,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     //fallingItemsDropped = fallingItemsDropped + 1
                     heart1.removeFromParent()
                     lives = lives-1
-                    
                     viewController?.performSegue(withIdentifier: "playToEnd", sender: nil)
                 }
             }

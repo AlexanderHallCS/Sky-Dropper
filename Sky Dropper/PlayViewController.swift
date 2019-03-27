@@ -34,6 +34,9 @@ class PlayViewController: UIViewController {
                 
                 sceneHeight = scene.size.height
                 sceneWidth = scene.size.width
+                
+                viewController = self
+                
                 // Present the scene
                 view.presentScene(scene)
             }
