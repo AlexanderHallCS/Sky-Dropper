@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import CoreData
 
 let motionManager: CMMotionManager = CMMotionManager()
 var viewController: UIViewController?
@@ -17,10 +18,15 @@ enum ColliderType:UInt32 {
     case characterCategory = 0b01
     case fallingItemCategory = 0b10
     case characterCollisionObjectCategory = 0b100
+    case barrierCategory = 0b1000
+    case rayGunCategory = 0b10000
+    case laserCategory = 0b100000
 }
 
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var charLocX: CGFloat = 0.0
     var charCollisionLocX: CGFloat = 0.0
@@ -44,6 +50,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let yellowBananaTexture = SKTexture(imageNamed: "YellowBanana")
     let yellowAlienTexture = SKTexture(imageNamed: "YellowAlien")
     
+    let rayGunTexture = SKTexture(imageNamed: "RayGun")
+    let barrierTexture = SKTexture(imageNamed: "BarrierFalling")
+    var rayGun = SKSpriteNode()
+    var barrier = SKSpriteNode()
+    
+    var laserTexture = SKTexture(imageNamed: "Laser")
+    var lasers :[SKSpriteNode] = [SKSpriteNode]()
+    
     let backgroundTexture = SKTexture(imageNamed: "StartingBG")
     
     let worldNode = SKNode()
@@ -64,10 +78,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var pointsLabel = SKLabelNode()
     var cloudCurrencyThisGame = 0
     var pointsThisGame = 0
+    var totalClouds: UInt32 = 0
     
     var toggleFallingItemTimerCheck = Timer()
     var spawnFallingItemTimer = Timer()
     var shouldPauseTimer = false
+    var spawnBarrierOrRayGunTimer = Timer()
     
     var characterCollisionObject = SKSpriteNode()
     var isGoingLeft = false
@@ -115,7 +131,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         characterCollisionObject.physicsBody!.isDynamic = false
         characterCollisionObject.physicsBody!.categoryBitMask = ColliderType.characterCollisionObjectCategory.rawValue
         characterCollisionObject.physicsBody!.collisionBitMask = 0
-        characterCollisionObject.physicsBody!.contactTestBitMask = ColliderType.fallingItemCategory.rawValue
+        characterCollisionObject.physicsBody!.contactTestBitMask = ColliderType.fallingItemCategory.rawValue | ColliderType.barrierCategory.rawValue | ColliderType.rayGunCategory.rawValue
         //makes the characterCollisionObject transparent
         characterCollisionObject.alpha = 0.5
         worldNode.addChild(characterCollisionObject)
@@ -206,6 +222,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         spawnFallingItemTimer = Timer.scheduledTimer(timeInterval: 1.3, target: self, selector: #selector(self.spawnFallingItem), userInfo: nil, repeats: true)
         toggleFallingItemTimerCheck = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.toggleFallingItemTimer), userInfo: nil, repeats: true)
+        //spawnBarrierOrRayGunTimer = Timer.scheduledTimer(timerInterval: )
+        //make this performing of the selector repeat somehow
+        self.perform(#selector(spawnRayGunOrBarrier), with: nil, afterDelay: 10.0)
     }
     
     
@@ -221,6 +240,62 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         } else if (contact.bodyB.categoryBitMask == ColliderType.fallingItemCategory.rawValue){
             firstBody = contact.bodyB
             secondBody = contact.bodyA
+        }
+        
+        //collision between basket and rayGun
+        var thirdBody = SKPhysicsBody()
+        var fourthBody = SKPhysicsBody()
+        
+        if(contact.bodyA.categoryBitMask == ColliderType.rayGunCategory.rawValue) {
+            thirdBody = contact.bodyA
+            fourthBody = contact.bodyB
+        } else if(contact.bodyB.categoryBitMask == ColliderType.rayGunCategory.rawValue) {
+            thirdBody = contact.bodyB
+            fourthBody = contact.bodyA
+        }
+        
+        
+        if(thirdBody.node == rayGun && fourthBody.node == characterCollisionObject) {
+            //IMPLEMENT WHAT HAPPENS WHEN THE LASERS TOUCH THE FALLING ITEMS(DELETES THEM AND ADDS POINTS) ^^ new collision
+            rayGun.removeFromParent()
+            var numLasers = 0
+            var laserPosition = 0
+            while(numLasers < 50) {
+                let laser = SKSpriteNode(texture: laserTexture)
+                laser.physicsBody = SKPhysicsBody(texture: laserTexture, size: laserTexture.size())
+                laser.physicsBody!.isDynamic = true
+                laser.physicsBody!.usesPreciseCollisionDetection = true
+                laser.physicsBody!.affectedByGravity = false
+                laser.physicsBody!.velocity = CGVector.init(dx: 0, dy: 320)
+                laser.physicsBody!.categoryBitMask = ColliderType.laserCategory.rawValue
+                laser.physicsBody!.collisionBitMask = 0
+                laser.physicsBody!.contactTestBitMask = ColliderType.fallingItemCategory.rawValue
+                laser.position = CGPoint(x: (CGFloat)(-220 + laserPosition), y: self.size.height/2 * -1 + self.size.height/10)
+                laser.zPosition = 2
+                laser.name = "laser"
+                worldNode.addChild(laser)
+                lasers.append(laser)
+                numLasers = numLasers + 1
+                laserPosition = laserPosition + 10
+            }
+        }
+        
+        //collision between basker and falling barrier
+        var fifthBody = SKPhysicsBody()
+        var sixthBody = SKPhysicsBody()
+        
+        if(contact.bodyA.categoryBitMask == ColliderType.barrierCategory.rawValue) {
+            fifthBody = contact.bodyA
+            sixthBody = contact.bodyB
+        } else if(contact.bodyB.categoryBitMask == ColliderType.barrierCategory.rawValue) {
+            fifthBody = contact.bodyB
+            sixthBody = contact.bodyA
+        }
+        
+        if(fifthBody.node == barrier && sixthBody.node == characterCollisionObject) {
+            //remove barrier and put a bunch of barriers up
+            barrier.removeFromParent()
+            print("barrier contact!")
         }
         
         var fallingItemIterator = 0
@@ -265,6 +340,40 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    @objc func spawnRayGunOrBarrier() {
+        let randomXPosition = Int.random(in: 0...300)
+        let randomItem = Int.random(in: 0...1)
+        
+        switch randomItem {
+        case 0: rayGun = SKSpriteNode(texture: rayGunTexture)
+                rayGun.physicsBody = SKPhysicsBody(texture: rayGunTexture, size: rayGunTexture.size())
+                rayGun.physicsBody!.isDynamic = true
+                rayGun.physicsBody!.usesPreciseCollisionDetection = true
+                rayGun.physicsBody!.affectedByGravity = false
+                rayGun.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
+                rayGun.physicsBody!.categoryBitMask = ColliderType.rayGunCategory.rawValue
+                rayGun.physicsBody!.collisionBitMask = 0
+                rayGun.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                rayGun.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
+                rayGun.zPosition = 2
+                rayGun.name = "rayGun"
+                worldNode.addChild(rayGun)
+        default: barrier = SKSpriteNode(texture: barrierTexture)
+                 barrier.physicsBody = SKPhysicsBody(texture: barrierTexture, size: barrierTexture.size())
+                 barrier.physicsBody!.isDynamic = true
+                 barrier.physicsBody!.usesPreciseCollisionDetection = true
+                 barrier.physicsBody!.affectedByGravity = false
+                 barrier.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
+                 barrier.physicsBody!.categoryBitMask = ColliderType.barrierCategory.rawValue
+                 barrier.physicsBody!.collisionBitMask = 0
+                 barrier.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                 barrier.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
+                 barrier.zPosition = 2
+                 barrier.name = "barrier"
+                 worldNode.addChild(barrier)
+        }
+    }
+    
     @objc func spawnFallingItem() {
         //maybe change where the apples spawn
         let randomXPosition = Int.random(in: 0...300)
@@ -279,7 +388,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 redItem.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
                 redItem.physicsBody!.categoryBitMask = ColliderType.fallingItemCategory.rawValue
                 redItem.physicsBody!.collisionBitMask = 0
-                redItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                redItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue | ColliderType.laserCategory.rawValue
                 redItem.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                 redItem.zPosition = 2
                 redItem.name = "red"
@@ -293,7 +402,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 redItem.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
                 redItem.physicsBody!.categoryBitMask = ColliderType.fallingItemCategory.rawValue
                 redItem.physicsBody!.collisionBitMask = 0
-                redItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                redItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue | ColliderType.laserCategory.rawValue
                 redItem.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                 redItem.zPosition = 2
                 redItem.name = "red"
@@ -307,7 +416,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 redItem.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
                 redItem.physicsBody!.categoryBitMask = ColliderType.fallingItemCategory.rawValue
                 redItem.physicsBody!.collisionBitMask = 0
-                redItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                redItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue | ColliderType.laserCategory.rawValue
                 redItem.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                 redItem.zPosition = 2
                 redItem.name = "red"
@@ -321,7 +430,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 greenItem.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
                 greenItem.physicsBody!.categoryBitMask = ColliderType.fallingItemCategory.rawValue
                 greenItem.physicsBody!.collisionBitMask = 0
-                greenItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                greenItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue | ColliderType.laserCategory.rawValue
                 greenItem.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                 greenItem.zPosition = 2
                 greenItem.name = "green"
@@ -335,7 +444,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 greenItem.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
                 greenItem.physicsBody!.categoryBitMask = ColliderType.fallingItemCategory.rawValue
                 greenItem.physicsBody!.collisionBitMask = 0
-                greenItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                greenItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue | ColliderType.laserCategory.rawValue
                 greenItem.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                 greenItem.zPosition = 2
                 greenItem.name = "green"
@@ -349,12 +458,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                  yellowItem.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
                  yellowItem.physicsBody!.categoryBitMask = ColliderType.fallingItemCategory.rawValue
                  yellowItem.physicsBody!.collisionBitMask = 0
-                 yellowItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
+                 yellowItem.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue | ColliderType.laserCategory.rawValue
                  yellowItem.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                  yellowItem.zPosition = 2
                  yellowItem.name = "yellow"
                  worldNode.addChild(yellowItem)
                  fallingItems.append(yellowItem)
+        }
+    }
+    
+    func checkLasersOOB() {
+        var iterator = 0
+        while(iterator < lasers.count) {
+            if(lasers[iterator].position.y > 500) {
+                lasers[iterator].removeFromParent()
+                lasers.remove(at: iterator)
+                iterator = iterator - 1
+            }
         }
     }
     
@@ -386,6 +506,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     //fallingItemsDropped = fallingItemsDropped + 1
                     heart1.removeFromParent()
                     lives = lives-1
+                    do {
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        let context = appDelegate.persistentContainer.viewContext
+                        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SkyDropperTracking")
+                        request.returnsObjectsAsFaults = false
+                        let result = try context.fetch(request)
+                        for data in result as! [NSManagedObject] {
+                            totalClouds = (data.value(forKey: "totalClouds") as! UInt32)
+                        }
+                    } catch {
+                        print("Failed")
+                    }
+                    totalClouds = totalClouds.advanced(by: cloudCurrencyThisGame)
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(totalClouds, forKey: "totalClouds")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
                     viewController?.performSegue(withIdentifier: "playToEnd", sender: nil)
                 }
             }

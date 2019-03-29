@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StartingBG" translatesAutoresizingMaskIntoConstraints="NO" id="h4x-6q-78h">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9O9-a6-jFc">
                                 <rect key="frame" x="78" y="430" width="217" height="116"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -442,7 +438,6 @@
         <image name="ShopButton" width="217" height="116"/>
         <image name="SkinsSelectedButton" width="215" height="114"/>
         <image name="SkinsUnselectedButton" width="209" height="108"/>
-        <image name="StartingBG" width="1080" height="1920"/>
         <image name="UpgradesSelectedButton" width="215" height="114"/>
         <image name="UpgradesUnselectedButton" width="209" height="108"/>
     </resources>
@@ -450,7 +445,7 @@
         <segue reference="zfO-0z-Olp"/>
         <segue reference="L4i-Iq-zu3"/>
         <segue reference="Rqg-P1-e1O"/>
-        <segue reference="Nvy-JV-fcG"/>
+        <segue reference="cO6-dU-Zgy"/>
         <segue reference="xl0-uD-kQg"/>
         <segue reference="0fh-Eh-HWe"/>
     </inferredMetricsTieBreakers>
