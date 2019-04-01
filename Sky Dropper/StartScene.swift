@@ -42,16 +42,18 @@ class StartScene: SKScene {
             print("Failed")
         }
         
+        cloudsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         cloudsLabel.text = "\(clouds)"
         cloudsLabel.fontName = "Baskerville"
-        cloudsLabel.fontSize = 60
+        cloudsLabel.fontSize = 55
         cloudsLabel.fontColor = .black
-        cloudsLabel.position = CGPoint(x: -150, y: 500)
+        cloudsLabel.position = CGPoint(x: -50, y: 612)
         cloudsLabel.zPosition = 3
         addChild(cloudsLabel)
         
         cloudsCurrencyBar = SKSpriteNode(texture: cloudCurrencyBarTexture)
-        cloudsCurrencyBar.position = CGPoint(x: -200, y: 500)
+        cloudsCurrencyBar.size = CGSize(width: 530, height: 120)
+        cloudsCurrencyBar.position = CGPoint(x: -100, y: 630)
         cloudsCurrencyBar.zPosition = 2
         addChild(cloudsCurrencyBar)
     }
