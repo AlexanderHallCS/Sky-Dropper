@@ -43,11 +43,54 @@ class SkinsShopViewScene: SKScene {
     let astronautCostLabel = SKLabelNode()
     let lacrosseCostLabel = SKLabelNode()
     
+    var isAstronautUnlocked: UInt32 = 0
+    var isLacrosseUnlocked: UInt32 = 0
+    //0 = default
+    //1 = astronaut
+    //2 = lacrosse
+    var currentSkin: UInt32 = 0
+    
     override func didMove(to view: SKView) {
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
         topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
         addChild(topRectBuffer)
+        
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SkyDropperTracking")
+            request.returnsObjectsAsFaults = false
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                clouds = (data.value(forKey: "totalClouds") as! UInt32)
+                isAstronautUnlocked = (data.value(forKey: "isAstronautUnlocked") as! UInt32)
+                isLacrosseUnlocked = (data.value(forKey: "isLacrosseUnlocked") as! UInt32)
+                currentSkin = (data.value(forKey: "currentSkin") as! UInt32)
+            }
+        } catch {
+            print("Failed")
+        }
+        
+        /*let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        newUser.setValue(totalTotalBulletsDodged, forKey: "totalBulletsDodged")
+        newUser.setValue(totalTotalBulletsFired, forKey: "totalBulletsFired")
+        newUser.setValue(totalTotalLosses, forKey: "totalLosses")
+        newUser.setValue(totalTotalWins, forKey: "totalWins")
+        do {
+            try context.save()
+        } catch {
+            print("Couldn't save the context!")
+        } */
+        
+        //viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
+        
+        print("Clouds: \(clouds)")
+        print("isAstronautUnlocked: \(isAstronautUnlocked)")
+        print("isLacrosseSkinUnlocked: \(isLacrosseUnlocked)")
+        print("current skin: \(currentSkin)")
         
         defaultSkinButton = SKSpriteNode(texture: defaultSkinButtonTexture)
         defaultSkinButton.name = "defaultSkinButton"
@@ -65,7 +108,11 @@ class SkinsShopViewScene: SKScene {
         happyCharacterLabel.zPosition = 2
         addChild(happyCharacterLabel)
         
-        defaultSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        if(currentSkin == 0) {
+            defaultSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            defaultSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
         defaultSelectedBox.setScale(1)
         defaultSelectedBox.position = CGPoint(x: 150, y: self.size.height/4 - 10 - 70)
         addChild(defaultSelectedBox)
@@ -87,6 +134,7 @@ class SkinsShopViewScene: SKScene {
         astronautCharacterLabel.zPosition = 2
         addChild(astronautCharacterLabel)
         
+        if(isAstronautUnlocked == 0) {
         astronautCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         astronautCostLabel.text = "Cost: 500 Clouds"
         astronautCostLabel.fontName = "Baskerville"
@@ -95,8 +143,13 @@ class SkinsShopViewScene: SKScene {
         astronautCostLabel.position = CGPoint(x: -120, y: self.size.height/4 - self.size.height/3.6 - 140)
         astronautCostLabel.zPosition = 2
         addChild(astronautCostLabel)
+        }
         
-        astronautSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        if(currentSkin == 1) {
+            astronautSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            astronautSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
         astronautSelectedBox.setScale(1)
         astronautSelectedBox.position = CGPoint(x: 150, y: self.size.height/4 - self.size.height/3.6 - 70)
         addChild(astronautSelectedBox)
@@ -117,6 +170,7 @@ class SkinsShopViewScene: SKScene {
         lacrosseCharacterLabel.zPosition = 2
         addChild(lacrosseCharacterLabel)
         
+        if(isLacrosseUnlocked == 0) {
         lacrosseCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         lacrosseCostLabel.text = "Cost: 500 Clouds"
         lacrosseCostLabel.fontName = "Baskerville"
@@ -125,24 +179,16 @@ class SkinsShopViewScene: SKScene {
         lacrosseCostLabel.position = CGPoint(x: -120, y: self.size.height/4 - self.size.height/3.6 - 490)
         lacrosseCostLabel.zPosition = 2
         addChild(lacrosseCostLabel)
+        }
         
-        lacrosseSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        if(currentSkin == 2) {
+            lacrosseSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            lacrosseSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
         lacrosseSelectedBox.setScale(1)
         lacrosseSelectedBox.position = CGPoint(x: 150, y: self.size.height/4 - self.size.height/3.6 - 350 - 70)
         addChild(lacrosseSelectedBox)
-        
-        do {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SkyDropperTracking")
-            request.returnsObjectsAsFaults = false
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                clouds = (data.value(forKey: "totalClouds") as! UInt32)
-            }
-        } catch {
-            print("Failed")
-        }
         
         cloudsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         cloudsLabel.text = "\(clouds)"
@@ -158,11 +204,139 @@ class SkinsShopViewScene: SKScene {
         cloudsCurrencyBar.position = CGPoint(x: -110, y: -640)
         cloudsCurrencyBar.zPosition = 2
         addChild(cloudsCurrencyBar)
+        
+        
     }
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        if let touch = touches.first {
+            
+            let positionInScene = touch.location(in: self)
+            let touchedNode = self.atPoint(positionInScene)
+            if let name = touchedNode.name
+            {
+                if(name == "astronautSkinButton" && isAstronautUnlocked == 0 && clouds >= 500)
+                {
+                    clouds = clouds - 500
+                    isAstronautUnlocked = 1
+                    if(currentSkin == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentSkin == 2) {
+                        lacrosseSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentSkin = 1
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    do {
+                        try context.save()
+                        print("saved bought astronaut!")
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                    cloudsLabel.text = "\(clouds)"
+                    astronautSelectedBox.texture = selectedBoxTexture
+                    astronautCostLabel.removeFromParent()
+                } else if(name == "astronautSkinButton" && isAstronautUnlocked == 1) {
+                    if(currentSkin == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentSkin == 2) {
+                        lacrosseSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentSkin = 1
+                    astronautSelectedBox.texture = selectedBoxTexture
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    do {
+                        try context.save()
+                        print("saved astronaut!")
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                
+                if(name == "lacrossePlayerSkinButton" && isLacrosseUnlocked == 0 && clouds >= 500) {
+                    clouds = clouds - 500
+                    isLacrosseUnlocked = 1
+                    if(currentSkin == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentSkin == 1) {
+                        astronautSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentSkin = 2
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    do {
+                        try context.save()
+                        print("saved bought lacrosse!")
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                    cloudsLabel.text = "\(clouds)"
+                    lacrosseSelectedBox.texture = selectedBoxTexture
+                    lacrosseCostLabel.removeFromParent()
+                } else if(name == "lacrossePlayerSkinButton" && isLacrosseUnlocked == 1) {
+                    if(currentSkin == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentSkin == 1) {
+                        astronautSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentSkin = 2
+                    lacrosseSelectedBox.texture = selectedBoxTexture
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    do {
+                        try context.save()
+                        print("saved lacrosse!")
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                
+                if(name == "defaultSkinButton") {
+                    if(currentSkin == 1) {
+                        astronautSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentSkin == 2) {
+                        lacrosseSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentSkin = 0
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    do {
+                        try context.save()
+                        print("saved default!")
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                    defaultSelectedBox.texture = selectedBoxTexture
+                }
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {

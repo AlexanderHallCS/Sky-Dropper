@@ -94,7 +94,28 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var lives = 5
     
+    var currentSkin: UInt32 = 0
+    var isAstronautUnlocked: UInt32 = 0
+    var isLacrosseUnlocked: UInt32 = 0
+    
+    
     override func didMove(to view: SKView) {
+        
+        //ADD ISASTRONAUTUNLOCKED, ISLACROSSEUNLOCKED, AND CLOUDS SINCE THERE IS ANOTHER APPDELEGATE ^^^
+        do {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "SkyDropperTracking")
+            request.returnsObjectsAsFaults = false
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                currentSkin = (data.value(forKey: "currentSkin") as! UInt32)
+                isAstronautUnlocked = (data.value(forKey: "isAstronautUnlocked") as! UInt32)
+                isLacrosseUnlocked = (data.value(forKey: "isLacrosseUnlocked") as! UInt32)
+            }
+        } catch {
+            print("Failed")
+        }
         
         lives = 5
         /*if(hasExtraLife == true) {
@@ -141,7 +162,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         characterCollisionObject.alpha = 0.5
         worldNode.addChild(characterCollisionObject)
         
-        character = SKSpriteNode(texture: basketCharacterTexture)
+        if(currentSkin == 0){
+            character = SKSpriteNode(texture: basketCharacterTexture)
+        } else if(currentSkin == 1){
+            character = SKSpriteNode(texture: astronautCharacterTexture)
+        } else if(currentSkin == 2) {
+            character = SKSpriteNode(texture: lacrosseCharacterTexture)
+        }
         character.name = "character"
         if(UIDevice.current.userInterfaceIdiom == .phone) {
             character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/10)
@@ -149,7 +176,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             character.position = CGPoint(x: 0, y: self.size.height/2 * -1 + self.size.height/10 * 3 - 30)
         }
         character.zPosition = 3
-        character.physicsBody = SKPhysicsBody(texture: basketCharacterTexture, size: basketCharacterTexture.size())
+        
+        if(currentSkin == 0){
+            character.physicsBody = SKPhysicsBody(texture: basketCharacterTexture, size: basketCharacterTexture.size())
+        } else if(currentSkin == 1){
+            character.physicsBody = SKPhysicsBody(texture: astronautCharacterTexture, size: astronautCharacterTexture.size())
+        } else if(currentSkin == 2) {
+            character.physicsBody = SKPhysicsBody(texture: lacrosseCharacterTexture, size: lacrosseCharacterTexture.size())
+        }
         character.physicsBody!.isDynamic = false
         character.physicsBody!.affectedByGravity = false
         character.physicsBody!.categoryBitMask = 0
@@ -197,8 +231,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     if(!(currentX < -280)) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
                         self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 200)
-                        self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
-                        self.character.texture = self.basketCharacterTexture
+                        if(self.currentSkin == 0){
+                            self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
+                        } else if(self.currentSkin == 1){
+                             self.basketCharacterTexture = SKTexture(imageNamed: "AstronautSkinLeft")
+                        } else if(self.currentSkin == 2) {
+                            self.basketCharacterTexture = SKTexture(imageNamed: "LacrossePlayerLeft")
+                        }
+                        //CHANGE THIS MAYBE VVVVVVVVVVVV TO SUIT CURRENTSKIN
+                        //self.character.texture = self.basketCharacterTexture
                         //move collision node 248 pixels when the character swaps directions
                         if(self.isGoingLeft == false) {
                             self.isGoingLeft = true
@@ -209,8 +250,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     if(!(currentX > 310)) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
                         self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 200)
-                        self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
-                        self.character.texture = self.basketCharacterTexture
+                        if(self.currentSkin == 0){
+                            self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
+                        } else if(self.currentSkin == 1){
+                            self.basketCharacterTexture = SKTexture(imageNamed: "AstronautSkinRight")
+                        } else if(self.currentSkin == 2) {
+                            self.basketCharacterTexture = SKTexture(imageNamed: "LacrossePlayerRight")
+                        }
+                        //CHANGE THIS MAYBE VVVVVVVVVVVV TO SUIT CURRENTSKIN
+                        //self.character.texture = self.basketCharacterTexture
                         //move collision node back 248 pixels when the character swaps directions
                         if(self.isGoingLeft == true) {
                             self.isGoingLeft = false
@@ -325,7 +373,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems[fallingItemIterator].removeFromParent()
                 fallingItems.remove(at: fallingItemIterator)
                 fallingItemIterator = fallingItemIterator - 1
-                cloudCurrencyThisGame = cloudCurrencyThisGame + 1
+                //CHANGE TO CLOUDCURRENCYTHISGAME + 1 WHEN DONE TESTING
+                cloudCurrencyThisGame = cloudCurrencyThisGame + 500
                 pointsThisGame = pointsThisGame + 100
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
@@ -658,6 +707,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
                     let newUser = NSManagedObject(entity: entity!, insertInto: context)
                     newUser.setValue(totalClouds, forKey: "totalClouds")
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     do {
                         try context.save()
                     } catch {
