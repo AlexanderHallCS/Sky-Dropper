@@ -50,6 +50,9 @@ class SkinsShopViewScene: SKScene {
     //2 = lacrosse
     var currentSkin: UInt32 = 0
     
+    var rayGunUpgradeNumber: UInt32 = 0
+    var barrierUpgradeNumber: UInt32 = 0
+    
     override func didMove(to view: SKView) {
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
@@ -67,30 +70,19 @@ class SkinsShopViewScene: SKScene {
                 isAstronautUnlocked = (data.value(forKey: "isAstronautUnlocked") as! UInt32)
                 isLacrosseUnlocked = (data.value(forKey: "isLacrosseUnlocked") as! UInt32)
                 currentSkin = (data.value(forKey: "currentSkin") as! UInt32)
+                rayGunUpgradeNumber = (data.value(forKey: "rayGunUpgradeTracking") as! UInt32)
+                barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
             }
         } catch {
             print("Failed")
         }
         
-        /*let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Character", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        newUser.setValue(totalTotalBulletsDodged, forKey: "totalBulletsDodged")
-        newUser.setValue(totalTotalBulletsFired, forKey: "totalBulletsFired")
-        newUser.setValue(totalTotalLosses, forKey: "totalLosses")
-        newUser.setValue(totalTotalWins, forKey: "totalWins")
-        do {
-            try context.save()
-        } catch {
-            print("Couldn't save the context!")
-        } */
-        
-        //viewController?.performSegue(withIdentifier: "SegueFromPlayViewToEndView", sender: nil)
-        
         print("Clouds: \(clouds)")
         print("isAstronautUnlocked: \(isAstronautUnlocked)")
         print("isLacrosseSkinUnlocked: \(isLacrosseUnlocked)")
         print("current skin: \(currentSkin)")
+        print("rayGunUpgradeNumber: \(rayGunUpgradeNumber)")
+        print("barrierUpgradeNumber: \(barrierUpgradeNumber)")
         
         defaultSkinButton = SKSpriteNode(texture: defaultSkinButtonTexture)
         defaultSkinButton.name = "defaultSkinButton"
@@ -233,9 +225,10 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     do {
                         try context.save()
-                        print("saved bought astronaut!")
                     } catch {
                         print("Couldn't save the context!")
                     }
@@ -257,9 +250,10 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     do {
                         try context.save()
-                        print("saved astronaut!")
                     } catch {
                         print("Couldn't save the context!")
                     }
@@ -281,9 +275,10 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     do {
                         try context.save()
-                        print("saved bought lacrosse!")
                     } catch {
                         print("Couldn't save the context!")
                     }
@@ -305,9 +300,10 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     do {
                         try context.save()
-                        print("saved lacrosse!")
                     } catch {
                         print("Couldn't save the context!")
                     }
@@ -327,9 +323,10 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     do {
                         try context.save()
-                        print("saved default!")
                     } catch {
                         print("Couldn't save the context!")
                     }

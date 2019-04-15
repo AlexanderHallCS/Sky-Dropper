@@ -98,10 +98,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var isAstronautUnlocked: UInt32 = 0
     var isLacrosseUnlocked: UInt32 = 0
     
+    var rayGunUpgradeNumber: UInt32 = 0
+    var barrierUpgradeNumber: UInt32 = 0
     
     override func didMove(to view: SKView) {
         
-        //ADD ISASTRONAUTUNLOCKED, ISLACROSSEUNLOCKED, AND CLOUDS SINCE THERE IS ANOTHER APPDELEGATE ^^^
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -112,6 +113,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 currentSkin = (data.value(forKey: "currentSkin") as! UInt32)
                 isAstronautUnlocked = (data.value(forKey: "isAstronautUnlocked") as! UInt32)
                 isLacrosseUnlocked = (data.value(forKey: "isLacrosseUnlocked") as! UInt32)
+                rayGunUpgradeNumber = (data.value(forKey: "rayGunUpgradeTracking") as! UInt32)
+                barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
             }
         } catch {
             print("Failed")
@@ -276,31 +279,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         //AFTER DONE TESTING, CHANGE TO REPEAT TRUE AND TIMEINTERVAL 20 SECONDS
         spawnBarrierOrRayGunTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.spawnRayGunOrBarrier), userInfo: nil, repeats: false)
         
-        /*var numLasers = 0
-        var laserPosition = 0
-        while(numLasers < 1) {
-            //DispatchQueue.main.async {
-            let laser = SKSpriteNode(texture: rayGunTexture)
-            laser.physicsBody = SKPhysicsBody(texture: self.rayGunTexture, size: laser.size)
-            laser.physicsBody!.isDynamic = true
-            laser.physicsBody!.usesPreciseCollisionDetection = true
-            laser.physicsBody!.affectedByGravity = false
-            laser.physicsBody!.velocity = CGVector.init(dx: 0, dy: 320)
-            laser.physicsBody!.categoryBitMask = ColliderType.laserCategory.rawValue
-            laser.physicsBody!.collisionBitMask = 0
-            laser.physicsBody!.contactTestBitMask = ColliderType.fallingItemCategory.rawValue
-            laser.position = CGPoint(x: (CGFloat)(-357 + laserPosition), y: self.size.height/2 * -1 + self.size.height/10)
-            laser.zPosition = 2
-            laser.name = "laser"
-            self.worldNode.addChild(laser)
-            /*self.scene!.view.prepare(laser) { (success) in
-             self.scene!.view.rootNode.addChildNode(laser)
-             } */
-            self.lasers.append(laser)
-            numLasers = numLasers + 1
-            print("numLasers: \(numLasers)")
-            laserPosition = laserPosition + 10
-        } */
     }
     
     
@@ -710,6 +688,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     newUser.setValue(currentSkin, forKey: "currentSkin")
                     newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     do {
                         try context.save()
                     } catch {

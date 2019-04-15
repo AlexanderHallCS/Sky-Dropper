@@ -5,7 +5,7 @@
         <attribute name="currentSkin" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAstronautUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isLacrosseUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="laserUpgradeTracking" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rayGunUpgradeTracking" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalClouds" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalFallingItemsCaught" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalFallingItemsDropped" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
