@@ -276,8 +276,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         spawnFallingItemTimer = Timer.scheduledTimer(timeInterval: 1.3, target: self, selector: #selector(self.spawnFallingItem), userInfo: nil, repeats: true)
         toggleFallingItemTimerCheck = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.toggleFallingItemTimer), userInfo: nil, repeats: true)
-        //AFTER DONE TESTING, CHANGE TO REPEAT TRUE AND TIMEINTERVAL 20 SECONDS
-        spawnBarrierOrRayGunTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.spawnRayGunOrBarrier), userInfo: nil, repeats: false)
+        spawnBarrierOrRayGunTimer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.spawnRayGunOrBarrier), userInfo: nil, repeats: true)
         
     }
     
@@ -352,7 +351,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems.remove(at: fallingItemIterator)
                 fallingItemIterator = fallingItemIterator - 1
                 //CHANGE TO CLOUDCURRENCYTHISGAME + 1 WHEN DONE TESTING
-                cloudCurrencyThisGame = cloudCurrencyThisGame + 500
+                cloudCurrencyThisGame = cloudCurrencyThisGame + 5000
                 pointsThisGame = pointsThisGame + 100
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
@@ -376,13 +375,32 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             fallingItemIterator = fallingItemIterator + 1
         }
         
-        
-        
         if(thirdBody.node == rayGun && fourthBody.node == characterCollisionObject || fourthBody.node == rayGun && thirdBody.node == characterCollisionObject) {
          rayGun.removeFromParent()
          var numLasers = 0
          var laserPosition = 0
-         while(numLasers < 73) {
+         var numMaxLasers = 0
+         var laserPositionOffset = 0
+            if(rayGunUpgradeNumber == 0) {
+                numMaxLasers = 20
+                laserPositionOffset = 20
+            } else if(rayGunUpgradeNumber == 1) {
+                numMaxLasers = 30
+                laserPositionOffset = 18
+            } else if(rayGunUpgradeNumber == 2) {
+                numMaxLasers = 40
+                laserPositionOffset = 16
+            } else if(rayGunUpgradeNumber == 3) {
+                numMaxLasers = 50
+                laserPositionOffset = 14
+            } else if(rayGunUpgradeNumber == 4) {
+                numMaxLasers = 60
+                laserPositionOffset = 12
+            } else if(rayGunUpgradeNumber == 5) {
+                numMaxLasers = 70
+                laserPositionOffset = 10
+            }
+         while(numLasers < numMaxLasers) {
          let laser = SKSpriteNode(texture: laserTexture)
             laser.physicsBody = SKPhysicsBody(texture: laserTexture, size: laserTexture.size())
          laser.physicsBody!.isDynamic = true
@@ -398,8 +416,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
          laser.name = "laser"
          worldNode.addChild(laser)
          lasers.append(laser)
+            
          numLasers = numLasers + 1
-         laserPosition = laserPosition + 10
+         laserPosition = laserPosition + laserPositionOffset
             }
          }
         
@@ -421,7 +440,19 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 barrierBlock.name = "barrierBlock"
                 worldNode.addChild(barrierBlock)
                 //invalidate this if the back to home button is pressed
-                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            if(barrierUpgradeNumber == 0) {
+                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            } else if(barrierUpgradeNumber == 1) {
+                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            } else if(barrierUpgradeNumber == 2) {
+                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 6.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            } else if(barrierUpgradeNumber == 3) {
+                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            } else if(barrierUpgradeNumber == 4) {
+                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            } else if(barrierUpgradeNumber == 5) {
+                removeBarrierTimer = Timer.scheduledTimer(timeInterval: 12.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
+            }
         }
         
         

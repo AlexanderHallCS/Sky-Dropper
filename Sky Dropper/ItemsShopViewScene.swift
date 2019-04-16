@@ -128,12 +128,25 @@ class ItemsShopViewScene: SKScene {
         barrierButton.position = CGPoint(x: 0, y: self.size.height/4 - 600)
         addChild(barrierButton)
         
-        barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture0)
+        if(barrierUpgradeNumber == 0) {
+            barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture0)
+        } else if(barrierUpgradeNumber == 1) {
+            barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture1)
+        } else if(barrierUpgradeNumber == 2) {
+            barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture2)
+        } else if(barrierUpgradeNumber == 3) {
+            barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture3)
+        } else if(barrierUpgradeNumber == 4) {
+            barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture4)
+        } else if(barrierUpgradeNumber == 5) {
+            barrierUpgradeBar = SKSpriteNode(texture: upgradeTexture5)
+        }
         barrierUpgradeBar.name = "barrierUpgrade"
         barrierUpgradeBar.size = CGSize(width: 375, height: 80)
         barrierUpgradeBar.position = CGPoint(x: 0, y: self.size.height/4 - 790)
         addChild(barrierUpgradeBar)
         
+        if(barrierUpgradeNumber != 5) {
         barrierCurrencyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         barrierCurrencyLabel.text = "Cost: 350"
         barrierCurrencyLabel.fontName = "Baskerville"
@@ -142,6 +155,7 @@ class ItemsShopViewScene: SKScene {
         barrierCurrencyLabel.position = CGPoint(x: -120, y: self.size.height/4 - 890)
         barrierCurrencyLabel.zPosition = 2
         addChild(barrierCurrencyLabel)
+        }
         
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
@@ -176,6 +190,7 @@ class ItemsShopViewScene: SKScene {
                 if(name == "rayGun" && rayGunUpgradeNumber != 5 && clouds >= 350)
                 {
                     clouds = clouds - 350
+                    cloudsLabel.text = "\(clouds)"
                     if(rayGunUpgradeNumber == 0) {
                         rayGunUpgradeNumber = rayGunUpgradeNumber + 1
                         rayGunUpgradeBar.texture = upgradeTexture1
@@ -192,6 +207,42 @@ class ItemsShopViewScene: SKScene {
                         rayGunUpgradeNumber = rayGunUpgradeNumber + 1
                         rayGunUpgradeBar.texture = upgradeTexture5
                         rayGunCurrencyLabel.removeFromParent()
+                    }
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "barrier" && barrierUpgradeNumber != 5 && clouds >= 350)
+                {
+                    clouds = clouds - 350
+                    cloudsLabel.text = "\(clouds)"
+                    if(barrierUpgradeNumber == 0) {
+                        barrierUpgradeNumber = barrierUpgradeNumber + 1
+                        barrierUpgradeBar.texture = upgradeTexture1
+                    } else if(barrierUpgradeNumber == 1) {
+                        barrierUpgradeNumber = barrierUpgradeNumber + 1
+                        barrierUpgradeBar.texture = upgradeTexture2
+                    } else if(barrierUpgradeNumber == 2) {
+                        barrierUpgradeNumber = barrierUpgradeNumber + 1
+                        barrierUpgradeBar.texture = upgradeTexture3
+                    } else if(barrierUpgradeNumber == 3) {
+                        barrierUpgradeNumber = barrierUpgradeNumber + 1
+                        barrierUpgradeBar.texture = upgradeTexture4
+                    } else if(barrierUpgradeNumber == 4) {
+                        barrierUpgradeNumber = barrierUpgradeNumber + 1
+                        barrierUpgradeBar.texture = upgradeTexture5
+                        barrierCurrencyLabel.removeFromParent()
                     }
                     let context = appDelegate.persistentContainer.viewContext
                     let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
