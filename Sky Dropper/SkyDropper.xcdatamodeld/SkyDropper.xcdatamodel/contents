@@ -3,6 +3,8 @@
     <entity name="SkyDropperTracking" representedClassName="SkyDropperTracking" syncable="YES" codeGenerationType="class">
         <attribute name="barrierUpgradeTracking" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currentSkin" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hasExtraLife" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hasIncreasedSpeed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAstronautUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isLacrosseUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rayGunUpgradeTracking" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -12,6 +14,6 @@
         <attribute name="totalPoints" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SkyDropperTracking" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="SkyDropperTracking" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>

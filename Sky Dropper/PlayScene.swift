@@ -101,6 +101,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var rayGunUpgradeNumber: UInt32 = 0
     var barrierUpgradeNumber: UInt32 = 0
     
+    var hasIncreasedSpeed: UInt32 = 0
+    var hasExtraLife: UInt32 = 0
+    
     override func didMove(to view: SKView) {
         
         do {
@@ -115,16 +118,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 isLacrosseUnlocked = (data.value(forKey: "isLacrosseUnlocked") as! UInt32)
                 rayGunUpgradeNumber = (data.value(forKey: "rayGunUpgradeTracking") as! UInt32)
                 barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
+                hasExtraLife = (data.value(forKey: "hasExtraLife") as! UInt32)
+                hasIncreasedSpeed = (data.value(forKey: "hasIncreasedSpeed") as! UInt32)
             }
         } catch {
             print("Failed")
         }
-        
-        lives = 5
-        /*if(hasExtraLife == true) {
-            lives = lives + 1
-            //add handling in when falling items are dropped
-        }*/
         
         cloudCurrencyThisGame = 0
         pointsThisGame = 0
@@ -224,6 +223,16 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         heart5.size = CGSize(width: 30, height: 30)
         addChild(heart5)
         
+        lives = 5
+        if(hasExtraLife == 1) {
+            lives = 6
+            heart6 = SKSpriteNode(texture: heartTexture)
+            heart6.zPosition = 1
+            heart6.position = CGPoint(x: heart5.position.x + self.size.width/16, y: self.size.height/2 * -1 + self.size.height/36)
+            heart6.size = CGSize(width: 30, height: 30)
+            addChild(heart6)
+        }
+        
         motionManager.accelerometerUpdateInterval = 1.0/20.0
         if motionManager.isAccelerometerAvailable == true {
             motionManager.startAccelerometerUpdates(to: OperationQueue.current!)  { (data, error) in
@@ -232,8 +241,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 let currentCollisionX = self.characterCollisionObject.position.x
                 if data!.acceleration.x < 0.0 {
                     if(!(currentX < -280)) {
+                        if(self.hasIncreasedSpeed == 0) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
                         self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 200)
+                        } else if(self.hasIncreasedSpeed == 1) {
+                            self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 400)
+                            self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 400)
+                        }
                         if(self.currentSkin == 0){
                             self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
                         } else if(self.currentSkin == 1){
@@ -251,8 +265,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     }
                 } else if data!.acceleration.x > 0.0 {
                     if(!(currentX > 310)) {
+                        if(self.hasIncreasedSpeed == 0) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
                         self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 200)
+                        } else if(self.hasIncreasedSpeed == 1) {
+                            self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 400)
+                            self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 400)
+                        }
                         if(self.currentSkin == 0){
                             self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
                         } else if(self.currentSkin == 1){
@@ -679,7 +698,11 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems[iterator].removeFromParent()
                 fallingItems.remove(at: iterator)
                 iterator = iterator - 1
-                if(lives == 5) {
+                if(lives == 6) {
+                    //fallingItemsDropped = fallingItemsDropped + 1
+                    heart6.removeFromParent()
+                    lives = lives-1
+                } else if(lives == 5) {
                     //fallingItemsDropped = fallingItemsDropped + 1
                     heart5.removeFromParent()
                     lives = lives-1
@@ -699,6 +722,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     //fallingItemsDropped = fallingItemsDropped + 1
                     heart1.removeFromParent()
                     lives = lives-1
+                    hasExtraLife = 0
+                    hasIncreasedSpeed = 0
                     do {
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         let context = appDelegate.persistentContainer.viewContext
@@ -721,6 +746,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
                     newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
                     do {
                         try context.save()
                     } catch {

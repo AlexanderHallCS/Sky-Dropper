@@ -53,6 +53,9 @@ class SkinsShopViewScene: SKScene {
     var rayGunUpgradeNumber: UInt32 = 0
     var barrierUpgradeNumber: UInt32 = 0
     
+    var hasIncreasedSpeed: UInt32 = 0
+    var hasExtraLife: UInt32 = 0
+    
     override func didMove(to view: SKView) {
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
@@ -72,6 +75,8 @@ class SkinsShopViewScene: SKScene {
                 currentSkin = (data.value(forKey: "currentSkin") as! UInt32)
                 rayGunUpgradeNumber = (data.value(forKey: "rayGunUpgradeTracking") as! UInt32)
                 barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
+                hasExtraLife = (data.value(forKey: "hasExtraLife") as! UInt32)
+                hasIncreasedSpeed = (data.value(forKey: "hasIncreasedSpeed") as! UInt32)
             }
         } catch {
             print("Failed")
@@ -227,6 +232,8 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(clouds, forKey: "totalClouds")
                     newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
                     do {
                         try context.save()
                     } catch {
@@ -252,6 +259,8 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(clouds, forKey: "totalClouds")
                     newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
                     do {
                         try context.save()
                     } catch {
@@ -277,6 +286,8 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(clouds, forKey: "totalClouds")
                     newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
                     do {
                         try context.save()
                     } catch {
@@ -302,6 +313,8 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(clouds, forKey: "totalClouds")
                     newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
                     do {
                         try context.save()
                     } catch {
@@ -325,6 +338,8 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(clouds, forKey: "totalClouds")
                     newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
                     do {
                         try context.save()
                     } catch {

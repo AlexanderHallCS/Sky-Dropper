@@ -12,10 +12,15 @@ import CoreData
 
 class ShopScene: SKScene {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     var extraLifeUpgrade = SKSpriteNode()
     var extraLifeUpgradeTexture = SKTexture(imageNamed: "ExtraLifeOnStartOfGameButtonLocked")
     var increasedSpeedUpgrade = SKSpriteNode()
     var increasedSpeedUpgradeTexture = SKTexture(imageNamed: "IncreasedSpeedNextGameLockedButton")
+    
+    let extraLifeUnlockedTexture = SKTexture(imageNamed: "ExtraLifeNextGame")
+    let increasedSpeedUnlockedTexture = SKTexture(imageNamed: "IncreasedSpeedNextGameButton")
     
     var topRectBuffer = SKShapeNode()
     
@@ -24,23 +29,22 @@ class ShopScene: SKScene {
     var clouds: UInt32 = 0
     let cloudsLabel = SKLabelNode()
     
+    var isAstronautUnlocked: UInt32 = 0
+    var isLacrosseUnlocked: UInt32 = 0
+    //0 = default
+    //1 = astronaut
+    //2 = lacrosse
+    var currentSkin: UInt32 = 0
+    var rayGunUpgradeNumber: UInt32 = 0
+    var barrierUpgradeNumber: UInt32 = 0
+    var hasIncreasedSpeed: UInt32 = 0
+    var hasExtraLife: UInt32 = 0
+    
+    let extraLifeCostLabel = SKLabelNode()
+    let increasedSpeedCostLabel = SKLabelNode()
+    
+    
     override func didMove(to view: SKView) {
-        topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
-        topRectBuffer.fillColor = .orange
-        topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
-        addChild(topRectBuffer)
-        
-        extraLifeUpgrade = SKSpriteNode(texture: extraLifeUpgradeTexture)
-        extraLifeUpgrade.name = "extraLifeUpgrade"
-        extraLifeUpgrade.size = CGSize(width: self.size.width/1.25, height: self.size.height/4)
-        extraLifeUpgrade.position = CGPoint(x: 0, y: self.size.height/4 - 220)
-        addChild(extraLifeUpgrade)
-
-        increasedSpeedUpgrade = SKSpriteNode(texture: increasedSpeedUpgradeTexture)
-        increasedSpeedUpgrade.name = "increasedSpeed"
-        increasedSpeedUpgrade.size = CGSize(width: self.size.width/1.25, height: self.size.height/4)
-        increasedSpeedUpgrade.position = CGPoint(x: 0, y: self.size.height/4 - 260 - self.size.height/4)
-        addChild(increasedSpeedUpgrade)
         
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -50,10 +54,64 @@ class ShopScene: SKScene {
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
                 clouds = (data.value(forKey: "totalClouds") as! UInt32)
+                isAstronautUnlocked = (data.value(forKey: "isAstronautUnlocked") as! UInt32)
+                isLacrosseUnlocked = (data.value(forKey: "isLacrosseUnlocked") as! UInt32)
+                currentSkin = (data.value(forKey: "currentSkin") as! UInt32)
+                rayGunUpgradeNumber = (data.value(forKey: "rayGunUpgradeTracking") as! UInt32)
+                barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
+                hasExtraLife = (data.value(forKey: "hasExtraLife") as! UInt32)
+                hasIncreasedSpeed = (data.value(forKey: "hasIncreasedSpeed") as! UInt32)
             }
         } catch {
             print("Failed")
         }
+        
+        topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
+        topRectBuffer.fillColor = .orange
+        topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
+        addChild(topRectBuffer)
+        
+        if(hasExtraLife == 0) {
+        extraLifeCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        extraLifeCostLabel.text = "Cost: 150"
+        extraLifeCostLabel.fontName = "Baskerville"
+        extraLifeCostLabel.fontSize = 70
+        extraLifeCostLabel.fontColor = .blue
+        extraLifeCostLabel.position = CGPoint(x: -125, y: self.size.height/4 - 80 - 225)
+        extraLifeCostLabel.zPosition = 3
+        addChild(extraLifeCostLabel)
+        }
+        
+        if(hasExtraLife == 0) {
+            extraLifeUpgrade = SKSpriteNode(texture: extraLifeUpgradeTexture)
+        } else if(hasExtraLife == 1) {
+            extraLifeUpgrade = SKSpriteNode(texture: extraLifeUnlockedTexture)
+        }
+        extraLifeUpgrade.name = "extraLifeUpgrade"
+        extraLifeUpgrade.size = CGSize(width: self.size.width/1.25, height: self.size.height/4)
+        extraLifeUpgrade.position = CGPoint(x: 0, y: self.size.height/4 - 80)
+        addChild(extraLifeUpgrade)
+
+        if(hasIncreasedSpeed == 0) {
+        increasedSpeedCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        increasedSpeedCostLabel.text = "Cost: 150"
+        increasedSpeedCostLabel.fontName = "Baskerville"
+        increasedSpeedCostLabel.fontSize = 70
+        increasedSpeedCostLabel.fontColor = .blue
+        increasedSpeedCostLabel.position = CGPoint(x: -125, y: self.size.height/4 - 320 - self.size.height/4 - 225)
+        increasedSpeedCostLabel.zPosition = 3
+        addChild(increasedSpeedCostLabel)
+        }
+        
+        if(hasIncreasedSpeed == 0) {
+        increasedSpeedUpgrade = SKSpriteNode(texture: increasedSpeedUpgradeTexture)
+        } else if(hasIncreasedSpeed == 1) {
+           increasedSpeedUpgrade = SKSpriteNode(texture: increasedSpeedUnlockedTexture)
+        }
+        increasedSpeedUpgrade.name = "increasedSpeed"
+        increasedSpeedUpgrade.size = CGSize(width: self.size.width/1.25, height: self.size.height/4)
+        increasedSpeedUpgrade.position = CGPoint(x: 0, y: self.size.height/4 - 320 - self.size.height/4)
+        addChild(increasedSpeedUpgrade)
         
         cloudsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         cloudsLabel.text = "\(clouds)"
@@ -73,7 +131,62 @@ class ShopScene: SKScene {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        if let touch = touches.first {
+            
+            let positionInScene = touch.location(in: self)
+            let touchedNode = self.atPoint(positionInScene)
+            if let name = touchedNode.name
+            {
+                if(name == "extraLifeUpgrade" && hasExtraLife == 0 && clouds >= 150) {
+                    clouds = clouds - 150
+                    hasExtraLife = 1
+                    cloudsLabel.text = "\(clouds)"
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                    extraLifeUpgrade.texture = extraLifeUnlockedTexture
+                    extraLifeCostLabel.removeFromParent()
+                }
+                if(name == "increasedSpeed" && hasIncreasedSpeed == 0 && clouds >= 150) {
+                    clouds = clouds - 150
+                    hasIncreasedSpeed = 1
+                    cloudsLabel.text = "\(clouds)"
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                    increasedSpeedUpgrade.texture = increasedSpeedUnlockedTexture
+                    increasedSpeedCostLabel.removeFromParent()
+                }
+            }
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
