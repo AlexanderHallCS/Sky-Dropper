@@ -2,11 +2,16 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G5019" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SkyDropperTracking" representedClassName="SkyDropperTracking" syncable="YES" codeGenerationType="class">
         <attribute name="barrierUpgradeTracking" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentBackground" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currentSkin" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hasExtraLife" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="hasIncreasedSpeed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAstronautUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isJungleBGUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isLacrosseUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isOceanBGUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSpaceBGUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isWinterBGUnlocked" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="rayGunUpgradeTracking" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalClouds" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalFallingItemsCaught" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -14,6 +19,6 @@
         <attribute name="totalPoints" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SkyDropperTracking" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="SkyDropperTracking" positionX="-63" positionY="-18" width="128" height="285"/>
     </elements>
 </model>
