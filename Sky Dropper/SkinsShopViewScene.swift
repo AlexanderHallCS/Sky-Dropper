@@ -56,6 +56,13 @@ class SkinsShopViewScene: SKScene {
     var hasIncreasedSpeed: UInt32 = 0
     var hasExtraLife: UInt32 = 0
     
+    var fallingItemsDropped: UInt32 = 0
+    var redItemsCaught: UInt32 = 0
+    var greenItemsCaught: UInt32 = 0
+    var yellowItemsCaught: UInt32 = 0
+    var totalItemsCaught: UInt32 = 0
+    var totalPoints: UInt32 = 0
+    
     override func didMove(to view: SKView) {
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
@@ -77,6 +84,12 @@ class SkinsShopViewScene: SKScene {
                 barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
                 hasExtraLife = (data.value(forKey: "hasExtraLife") as! UInt32)
                 hasIncreasedSpeed = (data.value(forKey: "hasIncreasedSpeed") as! UInt32)
+                fallingItemsDropped = (data.value(forKey: "totalFallingItemsDropped") as! UInt32)
+                totalPoints = (data.value(forKey: "totalPoints") as! UInt32)
+                redItemsCaught = (data.value(forKey: "redItemsCaught") as! UInt32)
+                greenItemsCaught = (data.value(forKey: "greenItemsCaught") as! UInt32)
+                yellowItemsCaught = (data.value(forKey: "yellowItemsCaught") as! UInt32)
+                totalItemsCaught = (data.value(forKey: "totalFallingItemsCaught") as! UInt32)
             }
         } catch {
             print("Failed")
@@ -92,7 +105,6 @@ class SkinsShopViewScene: SKScene {
         defaultSkinButton = SKSpriteNode(texture: defaultSkinButtonTexture)
         defaultSkinButton.name = "defaultSkinButton"
         defaultSkinButton.setScale(1)
-        //defaultSkinButton.size = CGSize(width: self.size.width/4, height: self.size.height/5.1)
         defaultSkinButton.position = CGPoint(x: 0, y: self.size.height/4 - 10)
         addChild(defaultSkinButton)
         
@@ -117,9 +129,7 @@ class SkinsShopViewScene: SKScene {
         astronautSkinButton = SKSpriteNode(texture: astronautSkinButtonTexture)
         astronautSkinButton.name = "astronautSkinButton"
         astronautSkinButton.setScale(1)
-        //astronautSkinButton.size = CGSize(width: self.size.width/4, height: self.size.height/5.1)
         astronautSkinButton.position = CGPoint(x: 0, y: self.size.height/4 - self.size.height/3.6)
-        //print("Height: \(astronautSkinButton.size.height)\nDistance: \(self.size.height/4 - self.size.height/3.6 - self.size.height/4 + 40)")
         addChild(astronautSkinButton)
         
         astronautCharacterLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
@@ -154,7 +164,6 @@ class SkinsShopViewScene: SKScene {
         lacrossePlayerSkinButton = SKSpriteNode(texture: lacrossePlayerSkinButtonTexture)
         lacrossePlayerSkinButton.name = "lacrossePlayerSkinButton"
         lacrossePlayerSkinButton.setScale(1)
-        //lacrossePlayerSkinButton.size = CGSize(width: self.size.width/3.5, height: self.size.height/5.1)
         lacrossePlayerSkinButton.position = CGPoint(x: 0, y: self.size.height/4 - self.size.height/3.6 - 350)
         addChild(lacrossePlayerSkinButton)
         
@@ -234,6 +243,12 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {
@@ -261,6 +276,12 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {
@@ -288,6 +309,12 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {
@@ -315,6 +342,12 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {
@@ -340,6 +373,12 @@ class SkinsShopViewScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {

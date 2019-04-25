@@ -21,6 +21,8 @@ class StatisticsViewController: UIViewController {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 
+                scene.backgroundColor = SKColor.yellow
+                
                 // Present the scene
                 view.presentScene(scene)
             }

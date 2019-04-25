@@ -104,6 +104,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var hasIncreasedSpeed: UInt32 = 0
     var hasExtraLife: UInt32 = 0
     
+    var fallingItemsDropped: UInt32 = 0
+    var redItemsCaught: UInt32 = 0
+    var greenItemsCaught: UInt32 = 0
+    var yellowItemsCaught: UInt32 = 0
+    var totalItemsCaught: UInt32 = 0
+    var totalPoints: UInt32 = 0
+    
     override func didMove(to view: SKView) {
         
         do {
@@ -120,6 +127,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
                 hasExtraLife = (data.value(forKey: "hasExtraLife") as! UInt32)
                 hasIncreasedSpeed = (data.value(forKey: "hasIncreasedSpeed") as! UInt32)
+                fallingItemsDropped = (data.value(forKey: "totalFallingItemsDropped") as! UInt32)
+                totalPoints = (data.value(forKey: "totalPoints") as! UInt32)
+                redItemsCaught = (data.value(forKey: "redItemsCaught") as! UInt32)
+                greenItemsCaught = (data.value(forKey: "greenItemsCaught") as! UInt32)
+                yellowItemsCaught = (data.value(forKey: "yellowItemsCaught") as! UInt32)
+                totalItemsCaught = (data.value(forKey: "totalFallingItemsCaught") as! UInt32)
             }
         } catch {
             print("Failed")
@@ -365,13 +378,15 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         var fallingItemIterator = 0
         while(fallingItemIterator < fallingItems.count) {
             if(firstBody.node == fallingItems[fallingItemIterator] && firstBody.node?.name == "red" && secondBody.node == characterCollisionObject) {
-                //totalApplesCaught = totalApplesCaught + 1
                 fallingItems[fallingItemIterator].removeFromParent()
                 fallingItems.remove(at: fallingItemIterator)
                 fallingItemIterator = fallingItemIterator - 1
                 //CHANGE TO CLOUDCURRENCYTHISGAME + 1 WHEN DONE TESTING
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 5000
                 pointsThisGame = pointsThisGame + 100
+                totalPoints = totalPoints + 100
+                redItemsCaught = redItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(firstBody.node == fallingItems[fallingItemIterator] && firstBody.node?.name == "green" && secondBody.node == characterCollisionObject) {
@@ -380,6 +395,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItemIterator = fallingItemIterator - 1
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 10
                 pointsThisGame = pointsThisGame + 250
+                totalPoints = totalPoints + 250
+                greenItemsCaught = greenItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 pointsLabel.text = "Score: \(pointsThisGame)"
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
             } else if(firstBody.node == fallingItems[fallingItemIterator] && firstBody.node?.name == "yellow" && secondBody.node == characterCollisionObject) {
@@ -388,6 +406,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItemIterator = fallingItemIterator - 1
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 20
                 pointsThisGame = pointsThisGame + 500
+                totalPoints = totalPoints + 500
+                yellowItemsCaught = yellowItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             }
@@ -482,18 +503,27 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems[iterator2].removeFromParent()
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 1
                 pointsThisGame = pointsThisGame + 100
+                totalPoints = totalPoints + 100
+                redItemsCaught = redItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(seventhBody.node?.name == "laser" && eightBody.node == fallingItems[iterator2] && eightBody.node?.name == "green"){
                 fallingItems[iterator2].removeFromParent()
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 10
                 pointsThisGame = pointsThisGame + 250
+                totalPoints = totalPoints + 250
+                greenItemsCaught = greenItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(seventhBody.node?.name == "laser" && eightBody.node == fallingItems[iterator2] && eightBody.node?.name == "yellow"){
                 fallingItems[iterator2].removeFromParent()
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 20
                 pointsThisGame = pointsThisGame + 500
+                totalPoints = totalPoints + 500
+                yellowItemsCaught = yellowItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             }
@@ -513,6 +543,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItemIterator3 = fallingItemIterator3 - 1
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 1
                 pointsThisGame = pointsThisGame + 100
+                totalPoints = totalPoints + 100
+                redItemsCaught = redItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(ninthBody.node == fallingItems[fallingItemIterator3] && ninthBody.node?.name == "green" && tenthBody.node == barrierBlock || tenthBody.node == fallingItems[fallingItemIterator3] && tenthBody.node?.name == "green" && ninthBody.node == barrierBlock) {
@@ -521,6 +554,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItemIterator3 = fallingItemIterator3 - 1
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 10
                 pointsThisGame = pointsThisGame + 250
+                totalPoints = totalPoints + 250
+                greenItemsCaught = greenItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(ninthBody.node == fallingItems[fallingItemIterator3] && ninthBody.node?.name == "yellow" && tenthBody.node == barrierBlock || tenthBody.node == fallingItems[fallingItemIterator3] && tenthBody.node?.name == "yellow" && ninthBody.node == barrierBlock){
@@ -529,6 +565,9 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItemIterator3 = fallingItemIterator3 - 1
                 cloudCurrencyThisGame = cloudCurrencyThisGame + 20
                 pointsThisGame = pointsThisGame + 500
+                totalPoints = totalPoints + 500
+                yellowItemsCaught = yellowItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             }
@@ -699,27 +738,27 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 fallingItems.remove(at: iterator)
                 iterator = iterator - 1
                 if(lives == 6) {
-                    //fallingItemsDropped = fallingItemsDropped + 1
+                    fallingItemsDropped = fallingItemsDropped + 1
                     heart6.removeFromParent()
                     lives = lives-1
                 } else if(lives == 5) {
-                    //fallingItemsDropped = fallingItemsDropped + 1
+                    fallingItemsDropped = fallingItemsDropped + 1
                     heart5.removeFromParent()
                     lives = lives-1
                 } else if(lives == 4){
-                    //fallingItemsDropped = fallingItemsDropped + 1
+                    fallingItemsDropped = fallingItemsDropped + 1
                     heart4.removeFromParent()
                     lives = lives-1
                 } else if(lives == 3) {
-                    //fallingItemsDropped = fallingItemsDropped + 1
+                    fallingItemsDropped = fallingItemsDropped + 1
                     heart3.removeFromParent()
                     lives = lives-1
                 } else if(lives == 2) {
-                    //fallingItemsDropped = fallingItemsDropped + 1
+                    fallingItemsDropped = fallingItemsDropped + 1
                     heart2.removeFromParent()
                     lives = lives-1
                 } else if(lives == 1) {
-                    //fallingItemsDropped = fallingItemsDropped + 1
+                    fallingItemsDropped = fallingItemsDropped + 1
                     heart1.removeFromParent()
                     lives = lives-1
                     hasExtraLife = 0
@@ -748,6 +787,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {

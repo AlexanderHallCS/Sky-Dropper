@@ -43,6 +43,13 @@ class ShopScene: SKScene {
     let extraLifeCostLabel = SKLabelNode()
     let increasedSpeedCostLabel = SKLabelNode()
     
+    var fallingItemsDropped: UInt32 = 0
+    var redItemsCaught: UInt32 = 0
+    var greenItemsCaught: UInt32 = 0
+    var yellowItemsCaught: UInt32 = 0
+    var totalItemsCaught: UInt32 = 0
+    var totalPoints: UInt32 = 0
+    
     
     override func didMove(to view: SKView) {
         
@@ -61,6 +68,12 @@ class ShopScene: SKScene {
                 barrierUpgradeNumber = (data.value(forKey: "barrierUpgradeTracking") as! UInt32)
                 hasExtraLife = (data.value(forKey: "hasExtraLife") as! UInt32)
                 hasIncreasedSpeed = (data.value(forKey: "hasIncreasedSpeed") as! UInt32)
+                fallingItemsDropped = (data.value(forKey: "totalFallingItemsDropped") as! UInt32)
+                totalPoints = (data.value(forKey: "totalPoints") as! UInt32)
+                redItemsCaught = (data.value(forKey: "redItemsCaught") as! UInt32)
+                greenItemsCaught = (data.value(forKey: "greenItemsCaught") as! UInt32)
+                yellowItemsCaught = (data.value(forKey: "yellowItemsCaught") as! UInt32)
+                totalItemsCaught = (data.value(forKey: "totalFallingItemsCaught") as! UInt32)
             }
         } catch {
             print("Failed")
@@ -152,7 +165,12 @@ class ShopScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
-                    
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {
@@ -176,7 +194,12 @@ class ShopScene: SKScene {
                     newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
                     newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
                     newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
-                    
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
                     do {
                         try context.save()
                     } catch {
