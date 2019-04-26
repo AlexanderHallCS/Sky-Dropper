@@ -50,6 +50,12 @@ class ShopScene: SKScene {
     var totalItemsCaught: UInt32 = 0
     var totalPoints: UInt32 = 0
     
+    var isWinterUnlocked: UInt32 = 0
+    var isJungleUnlocked: UInt32 = 0
+    var isOceanUnlocked: UInt32 = 0
+    var isSpaceUnlocked: UInt32 = 0
+    var currentBackground: UInt32 = 0
+    
     
     override func didMove(to view: SKView) {
         
@@ -74,10 +80,21 @@ class ShopScene: SKScene {
                 greenItemsCaught = (data.value(forKey: "greenItemsCaught") as! UInt32)
                 yellowItemsCaught = (data.value(forKey: "yellowItemsCaught") as! UInt32)
                 totalItemsCaught = (data.value(forKey: "totalFallingItemsCaught") as! UInt32)
+                isWinterUnlocked = (data.value(forKey: "isWinterBGUnlocked") as! UInt32)
+                isJungleUnlocked = (data.value(forKey: "isJungleBGUnlocked") as! UInt32)
+                isOceanUnlocked = (data.value(forKey: "isOceanBGUnlocked") as! UInt32)
+                isSpaceUnlocked = (data.value(forKey: "isSpaceBGUnlocked") as! UInt32)
+                currentBackground = (data.value(forKey: "currentBackground") as! UInt32)
             }
         } catch {
             print("Failed")
         }
+        
+        print("Upgrades - isWinterUnlocked: \(isWinterUnlocked)")
+        print("Upgrades - isJungleUnlocked: \(isJungleUnlocked)")
+        print("Upgrades - isOceanUnlocked: \(isOceanUnlocked)")
+        print("Upgrades - isSpaceUnlocked: \(isSpaceUnlocked)")
+        print("Upgrades - current background: \(currentBackground)")
         
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
@@ -171,6 +188,11 @@ class ShopScene: SKScene {
                     newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
                     newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
                     newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
                     do {
                         try context.save()
                     } catch {
@@ -200,6 +222,11 @@ class ShopScene: SKScene {
                     newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
                     newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
                     newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
                     do {
                         try context.save()
                     } catch {

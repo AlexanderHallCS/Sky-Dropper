@@ -12,6 +12,8 @@ import CoreData
 
 class BackgroundScrollViewScene: SKScene {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     var topRectBuffer = SKShapeNode()
     
     var scrollingNode = SKNode()
@@ -69,6 +71,20 @@ class BackgroundScrollViewScene: SKScene {
     var totalItemsCaught: UInt32 = 0
     var totalPoints: UInt32 = 0
     
+    var isWinterUnlocked: UInt32 = 0
+    var isJungleUnlocked: UInt32 = 0
+    var isOceanUnlocked: UInt32 = 0
+    var isSpaceUnlocked: UInt32 = 0
+    var currentBackground: UInt32 = 0
+    
+    var unselectedBoxTexture = SKTexture(imageNamed: "UnselectedCheckBox")
+    var selectedBoxTexture = SKTexture(imageNamed: "SelectedCheckBox")
+    var defaultSelectedBox = SKSpriteNode()
+    var winterSelectedBox = SKSpriteNode()
+    var jungleSelectedBox = SKSpriteNode()
+    var oceanSelectedBox = SKSpriteNode()
+    var spaceSelectedBox = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
         
         do {
@@ -92,10 +108,21 @@ class BackgroundScrollViewScene: SKScene {
                 greenItemsCaught = (data.value(forKey: "greenItemsCaught") as! UInt32)
                 yellowItemsCaught = (data.value(forKey: "yellowItemsCaught") as! UInt32)
                 totalItemsCaught = (data.value(forKey: "totalFallingItemsCaught") as! UInt32)
+                isWinterUnlocked = (data.value(forKey: "isWinterBGUnlocked") as! UInt32)
+                isJungleUnlocked = (data.value(forKey: "isJungleBGUnlocked") as! UInt32)
+                isOceanUnlocked = (data.value(forKey: "isOceanBGUnlocked") as! UInt32)
+                isSpaceUnlocked = (data.value(forKey: "isSpaceBGUnlocked") as! UInt32)
+                currentBackground = (data.value(forKey: "currentBackground") as! UInt32)
             }
         } catch {
             print("Failed")
         }
+        
+        print("BG - isWinterUnlocked: \(isWinterUnlocked)")
+        print("BG - isJungleUnlocked: \(isJungleUnlocked)")
+        print("BG - isOceanUnlocked: \(isOceanUnlocked)")
+        print("BG - isSpaceUnlocked: \(isSpaceUnlocked)")
+        print("BG - current background: \(currentBackground)")
         
         scrollingNode.position = CGPoint(x: 0, y: 0)
         self.addChild(scrollingNode)
@@ -118,7 +145,18 @@ class BackgroundScrollViewScene: SKScene {
         defaultBGButton = SKSpriteNode(texture: defaultBGButtonTexture)
         defaultBGButton.position = CGPoint(x: 0, y: self.size.height/4)
         defaultBGButton.size = CGSize(width: 400, height: 250)
+        defaultBGButton.name = "default"
         scrollingNode.addChild(defaultBGButton)
+        
+        if(currentBackground == 0) {
+            defaultSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            defaultSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
+        defaultSelectedBox.position = CGPoint(x: 240, y: self.size.height/4 - 95)
+        defaultSelectedBox.setScale(1)
+        defaultSelectedBox.zPosition = 4
+        scrollingNode.addChild(defaultSelectedBox)
         
         winterBGLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         winterBGLabel.text = "Winter Background"
@@ -132,8 +170,10 @@ class BackgroundScrollViewScene: SKScene {
         winterBGButton = SKSpriteNode(texture: winterBGButtonTexture)
         winterBGButton.position = CGPoint(x: 0, y: self.size.height/4 - 380)
         winterBGButton.size = CGSize(width: 400, height: 250)
+        winterBGButton.name = "winter"
         scrollingNode.addChild(winterBGButton)
         
+        if(isWinterUnlocked == 0) {
         winterBGCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         winterBGCostLabel.text = "Cost: 500"
         winterBGCostLabel.fontName = "Baskerville"
@@ -142,6 +182,17 @@ class BackgroundScrollViewScene: SKScene {
         winterBGCostLabel.position = CGPoint(x: -55, y: self.size.height/4 - 270 - 255)
         winterBGCostLabel.zPosition = 3
         scrollingNode.addChild(winterBGCostLabel)
+        }
+        
+        if(currentBackground == 1) {
+            winterSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            winterSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
+        winterSelectedBox.position = CGPoint(x: 240, y: self.size.height/4 - 380 - 95)
+        winterSelectedBox.setScale(1)
+        winterSelectedBox.zPosition = 4
+        scrollingNode.addChild(winterSelectedBox)
         
         jungleBGLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         jungleBGLabel.text = "Jungle Background"
@@ -155,8 +206,10 @@ class BackgroundScrollViewScene: SKScene {
         jungleBGButton = SKSpriteNode(texture: jungleBGButtonTexture)
         jungleBGButton.position = CGPoint(x: 0, y: self.size.height/4 - 780)
         jungleBGButton.size = CGSize(width: 400, height: 250)
+        jungleBGButton.name = "jungle"
         scrollingNode.addChild(jungleBGButton)
         
+        if(isJungleUnlocked == 0) {
         jungleBGCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         jungleBGCostLabel.text = "Cost: 500"
         jungleBGCostLabel.fontName = "Baskerville"
@@ -165,6 +218,17 @@ class BackgroundScrollViewScene: SKScene {
         jungleBGCostLabel.position = CGPoint(x: -55, y: self.size.height/4 - 670 - 255)
         jungleBGCostLabel.zPosition = 3
         scrollingNode.addChild(jungleBGCostLabel)
+        }
+            
+        if(currentBackground == 2) {
+            jungleSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            jungleSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
+        jungleSelectedBox.position = CGPoint(x: 240, y: self.size.height/4 - 780 - 95)
+        jungleSelectedBox.setScale(1)
+        jungleSelectedBox.zPosition = 4
+        scrollingNode.addChild(jungleSelectedBox)
         
         oceanBGLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         oceanBGLabel.text = "Ocean Background"
@@ -178,8 +242,10 @@ class BackgroundScrollViewScene: SKScene {
         oceanBGButton = SKSpriteNode(texture: oceanBGButtonTexture)
         oceanBGButton.position = CGPoint(x: 0, y: self.size.height/4 - 1180)
         oceanBGButton.size = CGSize(width: 400, height: 250)
+        oceanBGButton.name = "ocean"
         scrollingNode.addChild(oceanBGButton)
         
+        if(isOceanUnlocked == 0) {
         oceanBGCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         oceanBGCostLabel.text = "Cost: 500"
         oceanBGCostLabel.fontName = "Baskerville"
@@ -188,6 +254,17 @@ class BackgroundScrollViewScene: SKScene {
         oceanBGCostLabel.position = CGPoint(x: -55, y: self.size.height/4 - 1070 - 255)
         oceanBGCostLabel.zPosition = 3
         scrollingNode.addChild(oceanBGCostLabel)
+        }
+        
+        if(currentBackground == 3) {
+            oceanSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            oceanSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
+        oceanSelectedBox.position = CGPoint(x: 240, y: self.size.height/4 - 1180 - 95)
+        oceanSelectedBox.setScale(1)
+        oceanSelectedBox.zPosition = 4
+        scrollingNode.addChild(oceanSelectedBox)
         
         spaceBGLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         spaceBGLabel.text = "Space Background"
@@ -201,8 +278,10 @@ class BackgroundScrollViewScene: SKScene {
         spaceBGButton = SKSpriteNode(texture: spaceBGButtonTexture)
         spaceBGButton.position = CGPoint(x: 0, y: self.size.height/4 - 1580)
         spaceBGButton.size = CGSize(width: 400, height: 250)
+        spaceBGButton.name = "space"
         scrollingNode.addChild(spaceBGButton)
         
+        if(isSpaceUnlocked == 0) {
         spaceBGCostLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         spaceBGCostLabel.text = "Cost: 500"
         spaceBGCostLabel.fontName = "Baskerville"
@@ -211,13 +290,24 @@ class BackgroundScrollViewScene: SKScene {
         spaceBGCostLabel.position = CGPoint(x: -55, y: self.size.height/4 - 1470 - 255)
         spaceBGCostLabel.zPosition = 3
         scrollingNode.addChild(spaceBGCostLabel)
+        }
+        
+        if(currentBackground == 4) {
+            spaceSelectedBox = SKSpriteNode(texture: selectedBoxTexture)
+        } else {
+            spaceSelectedBox = SKSpriteNode(texture: unselectedBoxTexture)
+        }
+        spaceSelectedBox.position = CGPoint(x: 240, y: self.size.height/4 - 1580 - 95)
+        spaceSelectedBox.setScale(1)
+        spaceSelectedBox.zPosition = 4
+        scrollingNode.addChild(spaceSelectedBox)
         
         cloudsCurrencyBar = SKSpriteNode(texture: cloudCurrencyBarTexture)
         cloudsCurrencyBar.size = CGSize(width: 530, height: 120)
-        //cloudsCurrencyBar.position = CGPoint(x: -105, y: -700)
         cloudsCurrencyBar.position = CGPoint(x: -110, y: -1430)
         cloudsCurrencyBar.zPosition = 3
         scrollingNode.addChild(cloudsCurrencyBar)
+        
         
         cloudsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         cloudsLabel.text = "\(clouds)"
@@ -236,6 +326,387 @@ class BackgroundScrollViewScene: SKScene {
             let location = touch.location(in: self)
             startY = location.y
             lastY = location.y
+            
+            let touchedNode = self.atPoint(location)
+            if let name = touchedNode.name
+            {
+                if(name == "default") {
+                    if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentBackground = 0
+                    defaultSelectedBox.texture = selectedBoxTexture
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "winter" && isWinterUnlocked == 0 && clouds >= 500) {
+                    clouds = clouds - 500
+                    cloudsLabel.text = "\(clouds)"
+                    isWinterUnlocked = 1
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    winterSelectedBox.texture = selectedBoxTexture
+                    currentBackground = 1
+                    winterBGCostLabel.removeFromParent()
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "winter" && isWinterUnlocked == 1) {
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    winterSelectedBox.texture = selectedBoxTexture
+                    currentBackground = 1
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "jungle" && isJungleUnlocked == 0 && clouds >= 500) {
+                    clouds = clouds - 500
+                    cloudsLabel.text = "\(clouds)"
+                    isJungleUnlocked = 1
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    jungleSelectedBox.texture = selectedBoxTexture
+                    currentBackground = 2
+                    jungleBGCostLabel.removeFromParent()
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "jungle" && isJungleUnlocked == 1) {
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    jungleSelectedBox.texture = selectedBoxTexture
+                    currentBackground = 2
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "ocean" && isOceanUnlocked == 0 && clouds >= 500) {
+                    clouds = clouds - 500
+                    cloudsLabel.text = "\(clouds)"
+                    isOceanUnlocked = 1
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentBackground = 3
+                    oceanSelectedBox.texture = selectedBoxTexture
+                    oceanBGCostLabel.removeFromParent()
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "ocean" && isOceanUnlocked == 1) {
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 4) {
+                        spaceSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentBackground = 3
+                    oceanSelectedBox.texture = selectedBoxTexture
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "space" && isSpaceUnlocked == 0 && clouds >= 500) {
+                    clouds = clouds - 500
+                    cloudsLabel.text = "\(clouds)"
+                    isSpaceUnlocked = 1
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentBackground = 4
+                    spaceSelectedBox.texture = selectedBoxTexture
+                    spaceBGCostLabel.removeFromParent()
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+                if(name == "space" && isSpaceUnlocked == 1) {
+                    if(currentBackground == 0) {
+                        defaultSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 1) {
+                        winterSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 2) {
+                        jungleSelectedBox.texture = unselectedBoxTexture
+                    } else if(currentBackground == 3) {
+                        oceanSelectedBox.texture = unselectedBoxTexture
+                    }
+                    currentBackground = 4
+                    spaceSelectedBox.texture = selectedBoxTexture
+                    let context = appDelegate.persistentContainer.viewContext
+                    let entity = NSEntityDescription.entity(forEntityName: "SkyDropperTracking", in: context)
+                    let newUser = NSManagedObject(entity: entity!, insertInto: context)
+                    newUser.setValue(currentSkin, forKey: "currentSkin")
+                    newUser.setValue(isLacrosseUnlocked, forKey: "isLacrosseUnlocked")
+                    newUser.setValue(isAstronautUnlocked, forKey: "isAstronautUnlocked")
+                    newUser.setValue(clouds, forKey: "totalClouds")
+                    newUser.setValue(rayGunUpgradeNumber, forKey: "rayGunUpgradeTracking")
+                    newUser.setValue(barrierUpgradeNumber, forKey: "barrierUpgradeTracking")
+                    newUser.setValue(hasExtraLife, forKey: "hasExtraLife")
+                    newUser.setValue(hasIncreasedSpeed, forKey: "hasIncreasedSpeed")
+                    newUser.setValue(fallingItemsDropped, forKey: "totalFallingItemsDropped")
+                    newUser.setValue(totalPoints, forKey: "totalPoints")
+                    newUser.setValue(redItemsCaught, forKey: "redItemsCaught")
+                    newUser.setValue(greenItemsCaught, forKey: "greenItemsCaught")
+                    newUser.setValue(yellowItemsCaught, forKey: "yellowItemsCaught")
+                    newUser.setValue(totalItemsCaught, forKey: "totalFallingItemsCaught")
+                    newUser.setValue(isWinterUnlocked, forKey: "isWinterBGUnlocked")
+                    newUser.setValue(isJungleUnlocked, forKey: "isJungleBGUnlocked")
+                    newUser.setValue(isOceanUnlocked, forKey: "isOceanBGUnlocked")
+                    newUser.setValue(isSpaceUnlocked, forKey: "isSpaceBGUnlocked")
+                    newUser.setValue(currentBackground, forKey: "currentBackground")
+                    do {
+                        try context.save()
+                    } catch {
+                        print("Couldn't save the context!")
+                    }
+                }
+            }
         }
     }
     
