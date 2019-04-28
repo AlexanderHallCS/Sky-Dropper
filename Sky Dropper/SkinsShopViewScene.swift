@@ -105,12 +105,6 @@ class SkinsShopViewScene: SKScene {
             print("Failed")
         }
         
-        print("Skins - isWinterUnlocked: \(isWinterUnlocked)")
-        print("Skins - isJungleUnlocked: \(isJungleUnlocked)")
-        print("Skins - isOceanUnlocked: \(isOceanUnlocked)")
-        print("Skins - isSpaceUnlocked: \(isSpaceUnlocked)")
-        print("Skins - current background: \(currentBackground)")
-        
         defaultSkinButton = SKSpriteNode(texture: defaultSkinButtonTexture)
         defaultSkinButton.name = "defaultSkinButton"
         defaultSkinButton.setScale(1)

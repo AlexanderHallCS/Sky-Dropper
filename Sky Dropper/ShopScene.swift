@@ -90,12 +90,6 @@ class ShopScene: SKScene {
             print("Failed")
         }
         
-        print("Upgrades - isWinterUnlocked: \(isWinterUnlocked)")
-        print("Upgrades - isJungleUnlocked: \(isJungleUnlocked)")
-        print("Upgrades - isOceanUnlocked: \(isOceanUnlocked)")
-        print("Upgrades - isSpaceUnlocked: \(isSpaceUnlocked)")
-        print("Upgrades - current background: \(currentBackground)")
-        
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
         topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)

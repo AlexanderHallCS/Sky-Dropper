@@ -154,12 +154,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             print("Failed")
         }
         
-        print("Play - isWinterUnlocked: \(isWinterUnlocked)")
-        print("Play - isJungleUnlocked: \(isJungleUnlocked)")
-        print("Play - isOceanUnlocked: \(isOceanUnlocked)")
-        print("Play - isSpaceUnlocked: \(isSpaceUnlocked)")
-        print("Play - current background: \(currentBackground)")
-        
         cloudCurrencyThisGame = 0
         pointsThisGame = 0
         

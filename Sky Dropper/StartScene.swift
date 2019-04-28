@@ -20,14 +20,17 @@ class StartScene: SKScene {
     
     var background = SKSpriteNode()
     var defaultBackground = SKTexture(imageNamed: "StartingBG")
+    var winterBG = SKTexture(imageNamed: "WinterBG")
+    var jungleBG = SKTexture(imageNamed: "JungleBG")
+    var oceanBG = SKTexture(imageNamed: "OceanBG")
+    var spaceBG = SKTexture(imageNamed: "SpaceBG")
     
     let cloudsLabel = SKLabelNode()
     
+    var currentBackground: UInt32 = 0
+    //ADD IN THE DIFFERENT TYPES OF BACKGROUNDS
+    
     override func didMove(to view: SKView) {
-        
-        background = SKSpriteNode(texture: defaultBackground)
-        background.size = self.frame.size
-        addChild(background)
         
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -37,10 +40,25 @@ class StartScene: SKScene {
             let result = try context.fetch(request)
             for data in result as! [NSManagedObject] {
                 clouds = (data.value(forKey: "totalClouds") as! UInt32)
+                currentBackground = (data.value(forKey: "currentBackground") as! UInt32)
             }
         } catch {
             print("Failed")
         }
+        
+        if(currentBackground == 0) {
+            background = SKSpriteNode(texture: defaultBackground)
+        } else if(currentBackground == 1) {
+            background = SKSpriteNode(texture: winterBG)
+        } else if(currentBackground == 2) {
+            background = SKSpriteNode(texture: jungleBG)
+        } else if(currentBackground == 3) {
+            background = SKSpriteNode(texture: oceanBG)
+        } else if(currentBackground == 4) {
+            background = SKSpriteNode(texture: spaceBG)
+        }
+        background.size = self.frame.size
+        addChild(background)
         
         cloudsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         cloudsLabel.text = "\(clouds)"

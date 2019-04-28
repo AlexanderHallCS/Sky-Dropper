@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -146,25 +146,12 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDy-bB-9rr">
-                                        <rect key="frame" x="56" y="125" width="128" height="71"/>
+                                        <rect key="frame" x="46" y="145" width="148" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="ContinueButton"/>
                                         <connections>
                                             <action selector="backOut:" destination="QpN-3c-DV1" eventType="touchUpInside" id="LMc-VX-WLA"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIW-dO-Qnf">
-                                        <rect key="frame" x="56" y="283" width="128" height="71"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="BackToHome"/>
-                                        <connections>
-                                            <action selector="backToHomeButton:" destination="QpN-3c-DV1" eventType="touchUpInside" id="SRa-DA-Dki"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XT-Fq-lgb">
-                                        <rect key="frame" x="56" y="204" width="128" height="71"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="RestartButton"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paused" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fau-z1-ZIx">
                                         <rect key="frame" x="52" y="29" width="136" height="52"/>
@@ -173,6 +160,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gIW-dO-Qnf">
+                                        <rect key="frame" x="46" y="255" width="148" height="91"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="BackToHome"/>
+                                        <connections>
+                                            <action selector="backToHomeButton:" destination="QpN-3c-DV1" eventType="touchUpInside" id="SRa-DA-Dki"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -433,7 +428,6 @@
         <image name="PauseButton" width="185" height="185"/>
         <image name="PlayAgainButton" width="217" height="116"/>
         <image name="PlayButton" width="217" height="116"/>
-        <image name="RestartButton" width="217" height="116"/>
         <image name="ScoresAndStats" width="217" height="116"/>
         <image name="ShopButton" width="217" height="116"/>
         <image name="SkinsSelectedButton" width="215" height="114"/>
@@ -442,12 +436,11 @@
         <image name="UpgradesUnselectedButton" width="209" height="108"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xjV-Yh-Nv0"/>
         <segue reference="zfO-0z-Olp"/>
         <segue reference="L4i-Iq-zu3"/>
         <segue reference="Rqg-P1-e1O"/>
         <segue reference="Nvy-JV-fcG"/>
         <segue reference="3gX-Bq-Cq2"/>
-        <segue reference="0fh-Eh-HWe"/>
+        <segue reference="eZw-wz-7Bw"/>
     </inferredMetricsTieBreakers>
 </document>

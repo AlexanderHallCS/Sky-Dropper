@@ -98,12 +98,6 @@ class ItemsShopViewScene: SKScene {
             print("Failed")
         }
         
-        print("Items - isWinterUnlocked: \(isWinterUnlocked)")
-        print("Items - isJungleUnlocked: \(isJungleUnlocked)")
-        print("Items - isOceanUnlocked: \(isOceanUnlocked)")
-        print("Items - isSpaceUnlocked: \(isSpaceUnlocked)")
-        print("Items - current background: \(currentBackground)")
-        
         rayGunItemLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         rayGunItemLabel.text = "Ray Gun Upgrade"
         rayGunItemLabel.fontName = "Baskerville"

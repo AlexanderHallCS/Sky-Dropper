@@ -117,20 +117,14 @@ class BackgroundScrollViewScene: SKScene {
         } catch {
             print("Failed")
         }
-        
-        print("BG - isWinterUnlocked: \(isWinterUnlocked)")
-        print("BG - isJungleUnlocked: \(isJungleUnlocked)")
-        print("BG - isOceanUnlocked: \(isOceanUnlocked)")
-        print("BG - isSpaceUnlocked: \(isSpaceUnlocked)")
-        print("BG - current background: \(currentBackground)")
-        
+            
         scrollingNode.position = CGPoint(x: 0, y: 0)
         self.addChild(scrollingNode)
         
         topRectBuffer = SKShapeNode(rectOf: CGSize(width: self.size.width, height: self.size.height/16), cornerRadius: 2)
         topRectBuffer.fillColor = .orange
         topRectBuffer.position = CGPoint(x: 0, y: self.size.height/2)
-        topRectBuffer.zPosition = 2
+        topRectBuffer.zPosition = 5
         addChild(topRectBuffer)
         
         defaultBGLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
