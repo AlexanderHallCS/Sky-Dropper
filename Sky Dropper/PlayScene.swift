@@ -50,6 +50,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     let yellowBananaTexture = SKTexture(imageNamed: "YellowBanana")
     let yellowAlienTexture = SKTexture(imageNamed: "YellowAlien")
     
+    var redItem = SKSpriteNode()
+    var greenItem = SKSpriteNode()
+    var yellowItem = SKSpriteNode()
+    
     let rayGunTexture = SKTexture(imageNamed: "RayGun")
     let barrierTexture = SKTexture(imageNamed: "BarrierFalling")
     var rayGun = SKSpriteNode()
@@ -60,8 +64,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     var laserTexture = SKTexture(imageNamed: "Laser")
     var lasers :[SKSpriteNode] = [SKSpriteNode]()
-    
-    let backgroundTexture = SKTexture(imageNamed: "StartingBG")
     
     let worldNode = SKNode()
     
@@ -117,6 +119,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var isSpaceUnlocked: UInt32 = 0
     var currentBackground: UInt32 = 0
     
+    var defaultBackgroundTexture = SKTexture(imageNamed: "StartingBG")
+    var winterBG = SKTexture(imageNamed: "WinterBG")
+    var jungleBG = SKTexture(imageNamed: "JungleBG")
+    var oceanBG = SKTexture(imageNamed: "OceanBG")
+    var spaceBG = SKTexture(imageNamed: "SpaceBG")
+    var background = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
         
         do {
@@ -158,9 +167,22 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         pointsThisGame = 0
         
         physicsWorld.contactDelegate = self
-        let background = SKSpriteNode(texture: backgroundTexture)
+        
+        
+        if(currentBackground == 0) {
+            background = SKSpriteNode(texture: defaultBackgroundTexture)
+        } else if(currentBackground == 1) {
+            background = SKSpriteNode(texture: winterBG)
+        } else if(currentBackground == 2) {
+            background = SKSpriteNode(texture: jungleBG)
+        } else if(currentBackground == 3) {
+            background = SKSpriteNode(texture: oceanBG)
+        } else if(currentBackground == 4) {
+            background = SKSpriteNode(texture: spaceBG)
+        }
         background.size = self.frame.size
         addChild(background)
+        
         addChild(worldNode)
         
         cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
@@ -646,8 +668,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         let randomItem = Int.random(in: 0...5)
         
         switch randomItem {
-        case 0: let redItem = SKSpriteNode(texture: redAppleTexture)
+        case 0:
+            if(currentBackground == 0) {
+                redItem = SKSpriteNode(texture: redAppleTexture)
                 redItem.physicsBody = SKPhysicsBody(texture: redAppleTexture, size: redItem.size)
+            } else if(currentBackground == 1) {
+                redItem = SKSpriteNode(texture: redSnowflakeTexture)
+                redItem.physicsBody = SKPhysicsBody(texture: redSnowflakeTexture, size: redItem.size)
+            } else if(currentBackground == 2) {
+                redItem = SKSpriteNode(texture: redBananaTexture)
+                redItem.physicsBody = SKPhysicsBody(texture: redBananaTexture, size: redItem.size)
+            } else if(currentBackground == 3) {
+                redItem = SKSpriteNode(texture: redFishTexture)
+                redItem.physicsBody = SKPhysicsBody(texture: redFishTexture, size: redItem.size)
+            } else if(currentBackground == 4) {
+                redItem = SKSpriteNode(texture: redAlienTexture)
+                redItem.physicsBody = SKPhysicsBody(texture: redAlienTexture, size: redItem.size)
+            }
                 redItem.physicsBody!.isDynamic = true
                 redItem.physicsBody!.usesPreciseCollisionDetection = true
                 redItem.physicsBody!.affectedByGravity = false
@@ -660,8 +697,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 redItem.name = "red"
                 worldNode.addChild(redItem)
                 fallingItems.append(redItem)
-        case 1: let redItem = SKSpriteNode(texture: redAppleTexture)
-                redItem.physicsBody = SKPhysicsBody(texture: redAppleTexture, size: redItem.size)
+        case 1:
+            if(currentBackground == 0) {
+            redItem = SKSpriteNode(texture: redAppleTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redAppleTexture, size: redItem.size)
+        } else if(currentBackground == 1) {
+            redItem = SKSpriteNode(texture: redSnowflakeTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redSnowflakeTexture, size: redItem.size)
+        } else if(currentBackground == 2) {
+            redItem = SKSpriteNode(texture: redBananaTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redBananaTexture, size: redItem.size)
+        } else if(currentBackground == 3) {
+            redItem = SKSpriteNode(texture: redFishTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redFishTexture, size: redItem.size)
+        } else if(currentBackground == 4) {
+            redItem = SKSpriteNode(texture: redAlienTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redAlienTexture, size: redItem.size)
+        }
                 redItem.physicsBody!.isDynamic = true
                 redItem.physicsBody!.usesPreciseCollisionDetection = true
                 redItem.physicsBody!.affectedByGravity = false
@@ -674,8 +726,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 redItem.name = "red"
                 worldNode.addChild(redItem)
                 fallingItems.append(redItem)
-        case 2: let redItem = SKSpriteNode(texture: redAppleTexture)
-                redItem.physicsBody = SKPhysicsBody(texture: redAppleTexture, size: redItem.size)
+        case 2:
+            if(currentBackground == 0) {
+            redItem = SKSpriteNode(texture: redAppleTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redAppleTexture, size: redItem.size)
+        } else if(currentBackground == 1) {
+            redItem = SKSpriteNode(texture: redSnowflakeTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redSnowflakeTexture, size: redItem.size)
+        } else if(currentBackground == 2) {
+            redItem = SKSpriteNode(texture: redBananaTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redBananaTexture, size: redItem.size)
+        } else if(currentBackground == 3) {
+            redItem = SKSpriteNode(texture: redFishTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redFishTexture, size: redItem.size)
+        } else if(currentBackground == 4) {
+            redItem = SKSpriteNode(texture: redAlienTexture)
+            redItem.physicsBody = SKPhysicsBody(texture: redAlienTexture, size: redItem.size)
+        }
                 redItem.physicsBody!.isDynamic = true
                 redItem.physicsBody!.usesPreciseCollisionDetection = true
                 redItem.physicsBody!.affectedByGravity = false
@@ -688,8 +755,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 redItem.name = "red"
                 worldNode.addChild(redItem)
                 fallingItems.append(redItem)
-        case 3: let greenItem = SKSpriteNode(texture: greenAppleTexture)
-                greenItem.physicsBody = SKPhysicsBody(texture: greenAppleTexture, size: greenItem.size)
+        case 3:
+            if(currentBackground == 0) {
+            greenItem = SKSpriteNode(texture: greenAppleTexture)
+            greenItem.physicsBody = SKPhysicsBody(texture: greenAppleTexture, size: greenItem.size)
+        } else if(currentBackground == 1) {
+            greenItem = SKSpriteNode(texture: greenSnowflakeTexture)
+            greenItem.physicsBody = SKPhysicsBody(texture: greenSnowflakeTexture, size: greenItem.size)
+        } else if(currentBackground == 2) {
+            greenItem = SKSpriteNode(texture: greenBananaTexture)
+            greenItem.physicsBody = SKPhysicsBody(texture: greenBananaTexture, size: greenItem.size)
+        } else if(currentBackground == 3) {
+            greenItem = SKSpriteNode(texture: greenFishTexture)
+            greenItem.physicsBody = SKPhysicsBody(texture: greenFishTexture, size: greenItem.size)
+        } else if(currentBackground == 4) {
+            greenItem = SKSpriteNode(texture: greenAlienTexture)
+            greenItem.physicsBody = SKPhysicsBody(texture: greenAlienTexture, size: greenItem.size)
+        }
                 greenItem.physicsBody!.isDynamic = true
                 greenItem.physicsBody!.usesPreciseCollisionDetection = true
                 greenItem.physicsBody!.affectedByGravity = false
@@ -702,8 +784,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 greenItem.name = "green"
                 worldNode.addChild(greenItem)
                 fallingItems.append(greenItem)
-        case 4: let greenItem = SKSpriteNode(texture: greenAppleTexture)
+        case 4:
+            if(currentBackground == 0) {
+                greenItem = SKSpriteNode(texture: greenAppleTexture)
                 greenItem.physicsBody = SKPhysicsBody(texture: greenAppleTexture, size: greenItem.size)
+            } else if(currentBackground == 1) {
+                greenItem = SKSpriteNode(texture: greenSnowflakeTexture)
+                greenItem.physicsBody = SKPhysicsBody(texture: greenSnowflakeTexture, size: greenItem.size)
+            } else if(currentBackground == 2) {
+                greenItem = SKSpriteNode(texture: greenBananaTexture)
+                greenItem.physicsBody = SKPhysicsBody(texture: greenBananaTexture, size: greenItem.size)
+            } else if(currentBackground == 3) {
+                greenItem = SKSpriteNode(texture: greenFishTexture)
+                greenItem.physicsBody = SKPhysicsBody(texture: greenFishTexture, size: greenItem.size)
+            } else if(currentBackground == 4) {
+                greenItem = SKSpriteNode(texture: greenAlienTexture)
+                greenItem.physicsBody = SKPhysicsBody(texture: greenAlienTexture, size: greenItem.size)
+            }
                 greenItem.physicsBody!.isDynamic = true
                 greenItem.physicsBody!.usesPreciseCollisionDetection = true
                 greenItem.physicsBody!.affectedByGravity = false
@@ -716,8 +813,23 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 greenItem.name = "green"
                 worldNode.addChild(greenItem)
                 fallingItems.append(greenItem)
-        default: let yellowItem = SKSpriteNode(texture: yellowAppleTexture)
-                 yellowItem.physicsBody = SKPhysicsBody(texture: yellowAppleTexture, size: yellowItem.size)
+        default:
+            if(currentBackground == 0) {
+            yellowItem = SKSpriteNode(texture: yellowAppleTexture)
+            yellowItem.physicsBody = SKPhysicsBody(texture: yellowAppleTexture, size: yellowItem.size)
+        } else if(currentBackground == 1) {
+            yellowItem = SKSpriteNode(texture: yellowSnowflakeTexture)
+            yellowItem.physicsBody = SKPhysicsBody(texture: yellowSnowflakeTexture, size: yellowItem.size)
+        } else if(currentBackground == 2) {
+            yellowItem = SKSpriteNode(texture: yellowBananaTexture)
+            yellowItem.physicsBody = SKPhysicsBody(texture: yellowBananaTexture, size: yellowItem.size)
+        } else if(currentBackground == 3) {
+            yellowItem = SKSpriteNode(texture: yellowFishTexture)
+            yellowItem.physicsBody = SKPhysicsBody(texture: yellowFishTexture, size: yellowItem.size)
+        } else if(currentBackground == 4) {
+            yellowItem = SKSpriteNode(texture: yellowAlienTexture)
+            yellowItem.physicsBody = SKPhysicsBody(texture: yellowAlienTexture, size: yellowItem.size)
+        }
                  yellowItem.physicsBody!.isDynamic = true
                  yellowItem.physicsBody!.usesPreciseCollisionDetection = true
                  yellowItem.physicsBody!.affectedByGravity = false
@@ -749,7 +861,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         var iterator = 0
         while(iterator < fallingItems.count) {
-            if(fallingItems[iterator].position.y < -700) {
+            if(fallingItems[iterator].position.y < -800) {
                 fallingItems[iterator].removeFromParent()
                 fallingItems.remove(at: iterator)
                 iterator = iterator - 1
@@ -819,7 +931,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     } catch {
                         print("Couldn't save the context!")
                     }
+                    
+                    //viewController?.dismiss(animated: false, completion: {
                     viewController?.performSegue(withIdentifier: "playToEnd", sender: nil)
+                    //})
                 }
             }
             iterator = iterator + 1
