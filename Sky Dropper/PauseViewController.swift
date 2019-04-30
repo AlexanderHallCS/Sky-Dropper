@@ -44,6 +44,7 @@ class PauseViewController: UIViewController {
     @IBAction func backToHomeButton(_ sender: Any) {
         PlayViewController.GlobalPause.paused = false
         //PlayViewController.GlobalPause.isDeinitializing = true
+       // viewController?.dismiss(animated: false, completion: nil)
         self.performSegue(withIdentifier: "segueFromPauseToStart", sender: nil)
     }
     

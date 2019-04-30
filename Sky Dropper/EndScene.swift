@@ -12,7 +12,6 @@ import GameplayKit
 class EndScene: SKScene {
     
     override func didMove(to view: SKView) {
-       // PlayViewController.dismiss(<#T##UIViewController#>)
         viewController?.dismiss(animated: false, completion: nil)
     }
     

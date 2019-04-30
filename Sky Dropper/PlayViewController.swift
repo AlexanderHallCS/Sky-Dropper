@@ -20,7 +20,7 @@ class PlayViewController: UIViewController {
     
     struct GlobalPause {
         static var paused = false
-      //  static var isDeinitializing = false
+       // static var isDeinitializing = false
     }
     
     override func viewDidLoad() {

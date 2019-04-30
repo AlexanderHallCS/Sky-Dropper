@@ -28,9 +28,13 @@ class StartScene: SKScene {
     let cloudsLabel = SKLabelNode()
     
     var currentBackground: UInt32 = 0
-    //ADD IN THE DIFFERENT TYPES OF BACKGROUNDS
     
     override func didMove(to view: SKView) {
+        
+        /*if(PlayViewController.GlobalPause.isDeinitializing == true) {
+            viewController?.dismiss(animated: false, completion: nil)
+            PlayViewController.GlobalPause.isDeinitializing = false
+        } */
         
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate

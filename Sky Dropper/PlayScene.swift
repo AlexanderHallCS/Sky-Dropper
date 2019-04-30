@@ -290,7 +290,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 //.stopAccelerometerUpdates() when paused
                 let currentX = self.character.position.x
                 let currentCollisionX = self.characterCollisionObject.position.x
-                if data!.acceleration.x < 0.0 {
+                if data!.acceleration.x < 0.03 {
                     if(!(currentX < -280)) {
                         if(self.hasIncreasedSpeed == 0) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
@@ -299,6 +299,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                             self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 400)
                             self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 400)
                         }
+                        //Stops the character collision node from getting too far from the character
+                        if(self.charCollisionLocX < self.charLocX - 85) {
+                            self.charCollisionLocX += 7
+                        }
                         if(self.currentSkin == 0){
                             self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterLeft")
                         } else if(self.currentSkin == 1){
@@ -306,15 +310,14 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                         } else if(self.currentSkin == 2) {
                             self.basketCharacterTexture = SKTexture(imageNamed: "LacrossePlayerLeft")
                         }
-                        //CHANGE THIS MAYBE VVVVVVVVVVVV TO SUIT CURRENTSKIN
-                        //self.character.texture = self.basketCharacterTexture
+                        self.character.texture = self.basketCharacterTexture
                         //move collision node 248 pixels when the character swaps directions
                         if(self.isGoingLeft == false) {
                             self.isGoingLeft = true
                             self.charCollisionLocX = self.charCollisionLocX - 248
                         }
                     }
-                } else if data!.acceleration.x > 0.0 {
+                } else if data!.acceleration.x > 0.03 {
                     if(!(currentX > 310)) {
                         if(self.hasIncreasedSpeed == 0) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
@@ -323,6 +326,10 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                             self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 400)
                             self.charCollisionLocX = currentCollisionX + CGFloat((data?.acceleration.x)! * 400)
                         }
+                        //Stops the character collision node from getting too far from the character
+                        if(self.charCollisionLocX > self.charLocX + 85) {
+                            self.charCollisionLocX -= 7
+                        }
                         if(self.currentSkin == 0){
                             self.basketCharacterTexture = SKTexture(imageNamed: "DefaultBasketCharacterRight")
                         } else if(self.currentSkin == 1){
@@ -330,8 +337,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                         } else if(self.currentSkin == 2) {
                             self.basketCharacterTexture = SKTexture(imageNamed: "LacrossePlayerRight")
                         }
-                        //CHANGE THIS MAYBE VVVVVVVVVVVV TO SUIT CURRENTSKIN
-                        //self.character.texture = self.basketCharacterTexture
+                        self.character.texture = self.basketCharacterTexture
                         //move collision node back 248 pixels when the character swaps directions
                         if(self.isGoingLeft == true) {
                             self.isGoingLeft = false
@@ -573,8 +579,6 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         var fallingItemIterator3 = 0
         while(fallingItemIterator3 < fallingItems.count) {
-            //print("FallingItemIterator3: \(fallingItemIterator3)")
-            //print("FallingItems.count: \(fallingItems.count)")
             if(ninthBody.node == fallingItems[fallingItemIterator3] && ninthBody.node?.name == "red" && tenthBody.node == barrierBlock || tenthBody.node == fallingItems[fallingItemIterator3] && tenthBody.node?.name == "red" && ninthBody.node == barrierBlock) {
                 fallingItems[fallingItemIterator3].removeFromParent()
                 fallingItems.remove(at: fallingItemIterator3)
@@ -861,7 +865,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         
         var iterator = 0
         while(iterator < fallingItems.count) {
-            if(fallingItems[iterator].position.y < -800) {
+            if(fallingItems[iterator].position.y < -730) {
                 fallingItems[iterator].removeFromParent()
                 fallingItems.remove(at: iterator)
                 iterator = iterator - 1
