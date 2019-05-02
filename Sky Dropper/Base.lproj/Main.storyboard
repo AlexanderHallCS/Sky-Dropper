@@ -13,7 +13,7 @@
         <!--Start View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController title="Start View Controller" id="BV1-FR-VrT" customClass="StartViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startVCID" title="Start View Controller" id="BV1-FR-VrT" customClass="StartViewController" customModule="Sky_Dropper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="661.60000000000002" y="38.23088455772114"/>
+            <point key="canvasLocation" x="634" y="16"/>
         </scene>
         <!--Shop Controller-->
         <scene sceneID="nOQ-xE-Plh">
@@ -439,8 +439,8 @@
         <segue reference="zfO-0z-Olp"/>
         <segue reference="L4i-Iq-zu3"/>
         <segue reference="Rqg-P1-e1O"/>
-        <segue reference="Nvy-JV-fcG"/>
-        <segue reference="3gX-Bq-Cq2"/>
-        <segue reference="eZw-wz-7Bw"/>
+        <segue reference="cO6-dU-Zgy"/>
+        <segue reference="xl0-uD-kQg"/>
+        <segue reference="0fh-Eh-HWe"/>
     </inferredMetricsTieBreakers>
 </document>

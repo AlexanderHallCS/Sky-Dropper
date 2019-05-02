@@ -296,21 +296,20 @@ class BackgroundScrollViewScene: SKScene {
         spaceSelectedBox.zPosition = 4
         scrollingNode.addChild(spaceSelectedBox)
         
-        cloudsCurrencyBar = SKSpriteNode(texture: cloudCurrencyBarTexture)
-        cloudsCurrencyBar.size = CGSize(width: 530, height: 120)
-        cloudsCurrencyBar.position = CGPoint(x: -110, y: -1430)
-        cloudsCurrencyBar.zPosition = 3
-        scrollingNode.addChild(cloudsCurrencyBar)
-        
-        
         cloudsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         cloudsLabel.text = "\(clouds)"
         cloudsLabel.fontName = "Baskerville"
         cloudsLabel.fontSize = 55
         cloudsLabel.fontColor = .black
-        cloudsLabel.position = CGPoint(x: -60, y: -1450)
+        cloudsLabel.position = CGPoint(x: -154, y: -1460)
         cloudsLabel.zPosition = 4
         scrollingNode.addChild(cloudsLabel)
+        
+        cloudsCurrencyBar = SKSpriteNode(texture: cloudCurrencyBarTexture)
+        cloudsCurrencyBar.size = CGSize(width: 580, height: 60)
+        cloudsCurrencyBar.position = CGPoint(x: -84, y: -1437)
+        cloudsCurrencyBar.zPosition = 3
+        scrollingNode.addChild(cloudsCurrencyBar)
     }
     
     

@@ -31,11 +31,6 @@ class StartScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        /*if(PlayViewController.GlobalPause.isDeinitializing == true) {
-            viewController?.dismiss(animated: false, completion: nil)
-            PlayViewController.GlobalPause.isDeinitializing = false
-        } */
-        
         do {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
@@ -69,13 +64,13 @@ class StartScene: SKScene {
         cloudsLabel.fontName = "Baskerville"
         cloudsLabel.fontSize = 55
         cloudsLabel.fontColor = .black
-        cloudsLabel.position = CGPoint(x: -50, y: 612)
+        cloudsLabel.position = CGPoint(x: -140, y: 610)
         cloudsLabel.zPosition = 3
         addChild(cloudsLabel)
         
         cloudsCurrencyBar = SKSpriteNode(texture: cloudCurrencyBarTexture)
-        cloudsCurrencyBar.size = CGSize(width: 530, height: 120)
-        cloudsCurrencyBar.position = CGPoint(x: -100, y: 630)
+        cloudsCurrencyBar.size = CGSize(width: 580, height: 60)
+        cloudsCurrencyBar.position = CGPoint(x: -70, y: 630)
         cloudsCurrencyBar.zPosition = 2
         addChild(cloudsCurrencyBar)
     }

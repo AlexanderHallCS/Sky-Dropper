@@ -196,13 +196,13 @@ class ItemsShopViewScene: SKScene {
         cloudsLabel.fontName = "Baskerville"
         cloudsLabel.fontSize = 55
         cloudsLabel.fontColor = .black
-        cloudsLabel.position = CGPoint(x: -60, y: -660)
+        cloudsLabel.position = CGPoint(x: -154, y: -660)
         cloudsLabel.zPosition = 3
         addChild(cloudsLabel)
         
         cloudsCurrencyBar = SKSpriteNode(texture: cloudCurrencyBarTexture)
-        cloudsCurrencyBar.size = CGSize(width: 530, height: 120)
-        cloudsCurrencyBar.position = CGPoint(x: -110, y: -640)
+        cloudsCurrencyBar.size = CGSize(width: 580, height: 60)
+        cloudsCurrencyBar.position = CGPoint(x: -84, y: -640)
         cloudsCurrencyBar.zPosition = 2
         addChild(cloudsCurrencyBar)
         
