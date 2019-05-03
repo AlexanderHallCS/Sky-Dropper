@@ -126,7 +126,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var spaceBG = SKTexture(imageNamed: "SpaceBG")
     var background = SKSpriteNode()
     
-    var areTimersActive = false
+    var shouldRemoveBarrier = false
     
     override func didMove(to view: SKView) {
         
@@ -524,6 +524,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 barrierBlock.zPosition = 3
                 barrierBlock.name = "barrierBlock"
                 worldNode.addChild(barrierBlock)
+                shouldRemoveBarrier = true
             if(barrierUpgradeNumber == 0) {
                 removeBarrierTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
             } else if(barrierUpgradeNumber == 1) {
@@ -623,7 +624,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func spawnRayGunOrBarrier() {
-        let randomXPosition = Int.random(in: 0...300)
+        let randomXPosition = Int.random(in: 0...600)
         let randomItem = Int.random(in: 0...1)
         
         switch randomItem {
@@ -636,8 +637,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 rayGun.physicsBody!.categoryBitMask = ColliderType.rayGunCategory.rawValue
                 rayGun.physicsBody!.collisionBitMask = 0
                 rayGun.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
-                //rayGun.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
-                rayGun.position = CGPoint(x: character.position.x + 85, y: 600)
+                rayGun.position = CGPoint(x: Int(randomXPosition) - 300, y: 600)
                 rayGun.zPosition = 2
                 rayGun.name = "rayGun"
                 worldNode.addChild(rayGun)
@@ -659,7 +659,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func spawnFallingItem() {
         //maybe change where the apples spawn
-        let randomXPosition = Int.random(in: 0...300)
+        let randomXPosition = Int.random(in: 0...600)
         let randomItem = Int.random(in: 0...5)
         
         switch randomItem {
@@ -960,16 +960,17 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if(PlayViewController.GlobalPause.paused == true) {
             worldNode.isPaused = true
             physicsWorld.speed = 0
-            //motionManager.isAccelerometerAvailable = false
-            //motionManager.stopAccelerometerUpdates()
             removeBarrierTimer.invalidate()
+            //print("invalidate")
             //toggleFallingItemTimerCheck.invalidate()
             spawnFallingItemTimer.invalidate()
             spawnBarrierOrRayGunTimer.invalidate()
         } else {
             worldNode.isPaused = false
             physicsWorld.speed = 1
-            if(removeBarrierTimer.isValid == false) {
+            if(shouldRemoveBarrier == true) {
+                //print("LEEEEEEEEEEEEROY JENKINS")
+                shouldRemoveBarrier = false
                 if(barrierUpgradeNumber == 0) {
                     removeBarrierTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
                 } else if(barrierUpgradeNumber == 1) {
