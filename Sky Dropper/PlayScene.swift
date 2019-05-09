@@ -60,7 +60,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var barrier = SKSpriteNode()
     var barrierBlock = SKSpriteNode()
     var barrierBlockTexture = SKTexture(imageNamed: "BarrierBlock")
-    var removeBarrierTimer = Timer()
+    weak var removeBarrierTimer = Timer()
     
     var laserTexture = SKTexture(imageNamed: "Laser")
     var lasers :[SKSpriteNode] = [SKSpriteNode]()
@@ -214,7 +214,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         characterCollisionObject.physicsBody!.collisionBitMask = 0
         characterCollisionObject.physicsBody!.contactTestBitMask = ColliderType.fallingItemCategory.rawValue | ColliderType.barrierCategory.rawValue | ColliderType.rayGunCategory.rawValue
         //makes the characterCollisionObject transparent
-        characterCollisionObject.alpha = 0.5
+        //characterCollisionObject.alpha = 0.5
+        characterCollisionObject.alpha = 0.0
         worldNode.addChild(characterCollisionObject)
         
         if(currentSkin == 0){
@@ -525,7 +526,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 barrierBlock.name = "barrierBlock"
                 worldNode.addChild(barrierBlock)
                 shouldRemoveBarrier = true
-            if(barrierUpgradeNumber == 0) {
+            /*if(barrierUpgradeNumber == 0) {
                 removeBarrierTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
             } else if(barrierUpgradeNumber == 1) {
                 removeBarrierTimer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
@@ -537,7 +538,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 removeBarrierTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
             } else if(barrierUpgradeNumber == 5) {
                 removeBarrierTimer = Timer.scheduledTimer(timeInterval: 12.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
-            }
+            } */
         }
         
         
@@ -960,16 +961,13 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         if(PlayViewController.GlobalPause.paused == true) {
             worldNode.isPaused = true
             physicsWorld.speed = 0
-            removeBarrierTimer.invalidate()
-            //print("invalidate")
-            //toggleFallingItemTimerCheck.invalidate()
+            removeBarrierTimer?.invalidate()
             spawnFallingItemTimer.invalidate()
             spawnBarrierOrRayGunTimer.invalidate()
         } else {
             worldNode.isPaused = false
             physicsWorld.speed = 1
-            if(shouldRemoveBarrier == true) {
-                //print("LEEEEEEEEEEEEROY JENKINS")
+            if(shouldRemoveBarrier == true || removeBarrierTimer == nil && intersects(barrierBlock) && shouldRemoveBarrier == false) {
                 shouldRemoveBarrier = false
                 if(barrierUpgradeNumber == 0) {
                     removeBarrierTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.stopBarrier), userInfo: nil, repeats: false)
