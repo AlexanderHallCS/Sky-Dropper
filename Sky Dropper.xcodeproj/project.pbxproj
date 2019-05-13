@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		11447502223CBADC0051206D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11447501223CBADC0051206D /* CoreData.framework */; };
 		11447504223CBAE70051206D /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11447503223CBAE70051206D /* CoreMotion.framework */; };
-		11647C7C2288CFAF00D6435A /* SkyDropperMusic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11647C7B2288CFAE00D6435A /* SkyDropperMusic1.mp3 */; };
+		11647C7E2288D48700D6435A /* SkyDropperMusic1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 11647C7D2288D48700D6435A /* SkyDropperMusic1.mp3 */; };
 		116DAEA122257CFC0015BB7C /* ItemsShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */; };
 		116DAEA322257D5B0015BB7C /* ItemsShopViewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */; };
 		116DAEA522257D910015BB7C /* ItemsShopViewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */; };
@@ -64,7 +64,7 @@
 /* Begin PBXFileReference section */
 		11447501223CBADC0051206D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		11447503223CBAE70051206D /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		11647C7B2288CFAE00D6435A /* SkyDropperMusic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SkyDropperMusic1.mp3; path = ../../SkyDropperMusic1.mp3; sourceTree = "<group>"; };
+		11647C7D2288D48700D6435A /* SkyDropperMusic1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SkyDropperMusic1.mp3; sourceTree = "<group>"; };
 		116DAEA022257CFC0015BB7C /* ItemsShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsShopViewController.swift; sourceTree = "<group>"; };
 		116DAEA222257D5B0015BB7C /* ItemsShopViewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsShopViewScene.swift; sourceTree = "<group>"; };
 		116DAEA422257D910015BB7C /* ItemsShopViewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ItemsShopViewScene.sks; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				11E3FF5B21E63DF500BCC097 /* StatisticsScene.sks */,
 				11E981F222490702002CF58F /* SkyDropper.xcdatamodeld */,
 				11824C7621E636E500BB4A2C /* Assets.xcassets */,
-				11647C7B2288CFAE00D6435A /* SkyDropperMusic1.mp3 */,
+				11647C7D2288D48700D6435A /* SkyDropperMusic1.mp3 */,
 				11824C7821E636E500BB4A2C /* LaunchScreen.storyboard */,
 				11824C7B21E636E500BB4A2C /* Info.plist */,
 			);
@@ -329,7 +329,7 @@
 				116DAEA522257D910015BB7C /* ItemsShopViewScene.sks in Resources */,
 				116DAEAB22257EB00015BB7C /* SkinsShopViewScene.sks in Resources */,
 				11F8CFD3222037010093CD37 /* BackgroundScrollViewScene.sks in Resources */,
-				11647C7C2288CFAF00D6435A /* SkyDropperMusic1.mp3 in Resources */,
+				11647C7E2288D48700D6435A /* SkyDropperMusic1.mp3 in Resources */,
 				1199D6502207DC670042CD2D /* PlayScene.sks in Resources */,
 				1199D64A2207D8F90042CD2D /* ShopScene.sks in Resources */,
 				11E3FF5C21E63DF500BCC097 /* StatisticsScene.sks in Resources */,
