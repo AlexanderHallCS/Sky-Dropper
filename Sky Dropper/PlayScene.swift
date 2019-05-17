@@ -190,7 +190,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
         cloudCurrencyLabel.fontName = "Baskerville"
         cloudCurrencyLabel.fontSize = 60
-        cloudCurrencyLabel.fontColor = .yellow
+        cloudCurrencyLabel.fontColor = .cyan
         cloudCurrencyLabel.position = CGPoint(x: self.size.width/4 * -1 - 157, y: self.size.height/4 + 210)
         cloudCurrencyLabel.zPosition = 2
         cloudCurrencyLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
@@ -199,7 +199,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         pointsLabel.text = "Score: \(pointsThisGame)"
         pointsLabel.fontName = "Baskerville"
         pointsLabel.fontSize = 60
-        pointsLabel.fontColor = .yellow
+        pointsLabel.fontColor = .cyan
         pointsLabel.position  = CGPoint(x: self.size.width/4 * -1 - 155, y: self.size.height/4 + 270)
         pointsLabel.zPosition = 2
         pointsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
@@ -293,7 +293,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 let currentX = self.character.position.x
                 let currentCollisionX = self.characterCollisionObject.position.x
                 if(PlayViewController.GlobalPause.paused == false) {
-                if data!.acceleration.x < 0.03 {
+                if data!.acceleration.x < 0.044 {
                     if(!(currentX < -280)) {
                         if(self.hasIncreasedSpeed == 0) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
@@ -320,7 +320,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                             self.charCollisionLocX = self.charCollisionLocX - 248
                         }
                     }
-                } else if data!.acceleration.x > 0.03 {
+                } else if data!.acceleration.x > 0.044 {
                     if(!(currentX > 310)) {
                         if(self.hasIncreasedSpeed == 0) {
                         self.charLocX = currentX + CGFloat((data?.acceleration.x)! * 200)
@@ -522,7 +522,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 barrierBlock.physicsBody!.collisionBitMask = 0
                 barrierBlock.physicsBody!.contactTestBitMask = ColliderType.fallingItemCategory.rawValue
                 barrierBlock.position = CGPoint(x: 0, y: -450)
-                barrierBlock.zPosition = 3
+                barrierBlock.zPosition = 5
                 barrierBlock.name = "barrierBlock"
                 worldNode.addChild(barrierBlock)
             if(barrierUpgradeNumber == 0) {
