@@ -634,7 +634,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                 rayGun.physicsBody!.isDynamic = true
                 rayGun.physicsBody!.usesPreciseCollisionDetection = true
                 rayGun.physicsBody!.affectedByGravity = false
-                rayGun.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
+                rayGun.physicsBody!.velocity = CGVector.init(dx: 0, dy: -480)
                 rayGun.physicsBody!.categoryBitMask = ColliderType.rayGunCategory.rawValue
                 rayGun.physicsBody!.collisionBitMask = 0
                 rayGun.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
@@ -647,7 +647,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                  barrier.physicsBody!.isDynamic = true
                  barrier.physicsBody!.usesPreciseCollisionDetection = true
                  barrier.physicsBody!.affectedByGravity = false
-                 barrier.physicsBody!.velocity = CGVector.init(dx: 0, dy: -320)
+                 barrier.physicsBody!.velocity = CGVector.init(dx: 0, dy: -480)
                  barrier.physicsBody!.categoryBitMask = ColliderType.barrierCategory.rawValue
                  barrier.physicsBody!.collisionBitMask = 0
                  barrier.physicsBody!.contactTestBitMask = ColliderType.characterCollisionObjectCategory.rawValue
@@ -978,7 +978,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
             spawnFallingItemTimer = Timer.scheduledTimer(timeInterval: 1.3, target: self, selector: #selector(self.spawnFallingItem), userInfo: nil, repeats: true)
             }
             if(spawnBarrierOrRayGunTimer.isValid == false) {
-                spawnBarrierOrRayGunTimer = Timer.scheduledTimer(timeInterval: 20.0, target: self, selector: #selector(self.spawnRayGunOrBarrier), userInfo: nil, repeats: true)
+                spawnBarrierOrRayGunTimer = Timer.scheduledTimer(timeInterval: 16.0, target: self, selector: #selector(self.spawnRayGunOrBarrier), userInfo: nil, repeats: true)
             }
         }
         
