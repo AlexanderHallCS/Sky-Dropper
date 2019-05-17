@@ -33,9 +33,11 @@ class EndViewController: UIViewController {
     
     @IBAction func playAgain(_ sender: Any) {
         self.performSegue(withIdentifier: "endToPlay", sender: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     @IBAction func backToHome(_ sender: Any) {
         self.performSegue(withIdentifier: "endToStart", sender: nil)
+        self.dismiss(animated: false, completion: nil)
     }
     override var shouldAutorotate: Bool {
         return true

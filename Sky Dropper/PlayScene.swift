@@ -887,6 +887,12 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     lives = lives-1
                     hasExtraLife = 0
                     hasIncreasedSpeed = 0
+                    var iterator2 = 0
+                    spawnFallingItemTimer.invalidate()
+                    while(iterator2 < fallingItems.count) {
+                        fallingItems.remove(at: iterator2)
+                        iterator2 += 1
+                    }
                     do {
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         let context = appDelegate.persistentContainer.viewContext
