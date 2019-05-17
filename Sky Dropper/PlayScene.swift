@@ -547,29 +547,29 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
         while(iterator2 < fallingItems.count) {
             if(seventhBody.node?.name == "laser" && eightBody.node == fallingItems[iterator2] && eightBody.node?.name == "red") {
                 fallingItems[iterator2].removeFromParent()
-                cloudCurrencyThisGame = cloudCurrencyThisGame + 1
+                /*cloudCurrencyThisGame = cloudCurrencyThisGame + 1
                 pointsThisGame = pointsThisGame + 100
                 totalPoints = totalPoints + 100
                 redItemsCaught = redItemsCaught + 1
-                totalItemsCaught = totalItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1*/
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(seventhBody.node?.name == "laser" && eightBody.node == fallingItems[iterator2] && eightBody.node?.name == "green"){
                 fallingItems[iterator2].removeFromParent()
-                cloudCurrencyThisGame = cloudCurrencyThisGame + 10
+                /*cloudCurrencyThisGame = cloudCurrencyThisGame + 10
                 pointsThisGame = pointsThisGame + 250
                 totalPoints = totalPoints + 250
                 greenItemsCaught = greenItemsCaught + 1
-                totalItemsCaught = totalItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1 */
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             } else if(seventhBody.node?.name == "laser" && eightBody.node == fallingItems[iterator2] && eightBody.node?.name == "yellow"){
                 fallingItems[iterator2].removeFromParent()
-                cloudCurrencyThisGame = cloudCurrencyThisGame + 20
+                /*cloudCurrencyThisGame = cloudCurrencyThisGame + 20
                 pointsThisGame = pointsThisGame + 500
                 totalPoints = totalPoints + 500
                 yellowItemsCaught = yellowItemsCaught + 1
-                totalItemsCaught = totalItemsCaught + 1
+                totalItemsCaught = totalItemsCaught + 1 */
                 cloudCurrencyLabel.text = "Clouds: \(cloudCurrencyThisGame)"
                 pointsLabel.text = "Score: \(pointsThisGame)"
             }
@@ -889,6 +889,8 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
                     hasIncreasedSpeed = 0
                     var iterator2 = 0
                     spawnFallingItemTimer.invalidate()
+                    removeBarrierTimer.invalidate()
+                    spawnBarrierOrRayGunTimer.invalidate()
                     while(iterator2 < fallingItems.count) {
                         fallingItems.remove(at: iterator2)
                         iterator2 += 1
