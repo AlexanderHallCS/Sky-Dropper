@@ -20,7 +20,6 @@ class PlayViewController: UIViewController {
     
     struct GlobalPause {
         static var paused = false
-       // static var isDeinitializing = false
     }
     
     override func viewDidLoad() {
@@ -64,6 +63,7 @@ class PlayViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         audioPlayer.stop()
+        lives = 0
     }
     
     @IBAction func openPauseView(_ sender: Any) {

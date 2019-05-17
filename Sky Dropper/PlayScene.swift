@@ -23,6 +23,7 @@ enum ColliderType:UInt32 {
     case barrierBlockCategory = 0b1000000
 }
 
+var lives = 5
 
 class PlayScene: SKScene, SKPhysicsContactDelegate {
     
@@ -94,7 +95,7 @@ class PlayScene: SKScene, SKPhysicsContactDelegate {
     var characterCollisionObject = SKSpriteNode()
     var isGoingLeft = false
     
-    var lives = 5
+    
     
     var currentSkin: UInt32 = 0
     var isAstronautUnlocked: UInt32 = 0
