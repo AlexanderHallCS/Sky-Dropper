@@ -12,9 +12,13 @@ A gaming app where you catch falling objects for currency. Made as a high school
 
 ### Shop Features
 
-| Upgrades | Items | Skins | Backgrounds
-| ------------- | ------------- | ------------- | ------------- |
-| [<img src="https://i.gyazo.com/8f9ed51086eb3ddb7ac9bf12d580f66d.jpg" width="261" height="500"/>](https://i.gyazo.com/8f9ed51086eb3ddb7ac9bf12d580f66d.jpg) | [<img src="https://i.gyazo.com/cd876da6634b36c0969ff31e935c9f82.png" width="261" height="500"/>](https://i.gyazo.com/cd876da6634b36c0969ff31e935c9f82.png)  | [<img src="https://i.gyazo.com/7d4327bfb9d943cfdae0625b8e7d163d.jpg" width="261" height="500"/>](https://i.gyazo.com/7d4327bfb9d943cfdae0625b8e7d163d.jpg) | [<img src="https://i.gyazo.com/f09a96039cba53e55bd45c641e093f41.png" width="261" height="500"/>](https://i.gyazo.com/f09a96039cba53e55bd45c641e093f41.png)
+| Upgrades | Items | Skins |
+| ------------- | ------------- | ------------- |
+| [<img src="https://i.gyazo.com/8f9ed51086eb3ddb7ac9bf12d580f66d.jpg" width="261" height="500"/>](https://i.gyazo.com/8f9ed51086eb3ddb7ac9bf12d580f66d.jpg) | [<img src="https://i.gyazo.com/cd876da6634b36c0969ff31e935c9f82.png" width="261" height="500"/>](https://i.gyazo.com/cd876da6634b36c0969ff31e935c9f82.png)  | [<img src="https://i.gyazo.com/7d4327bfb9d943cfdae0625b8e7d163d.jpg" width="261" height="500"/>](https://i.gyazo.com/7d4327bfb9d943cfdae0625b8e7d163d.jpg)
+
+| Backgrounds |
+| ------------- |
+| [<img src="https://i.gyazo.com/f09a96039cba53e55bd45c641e093f41.png" width="261" height="500"/>](https://i.gyazo.com/f09a96039cba53e55bd45c641e093f41.png)
 
 ### Several Backgrounds
 
